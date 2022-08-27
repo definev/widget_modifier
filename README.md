@@ -15,6 +15,8 @@ A collection of built-in flutter widget modifiers, which flatten the widget tree
 
 ## Declarative widget modifier
 
+⚠️ Work in progress ⚠️
+
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
