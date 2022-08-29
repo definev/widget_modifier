@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:nested/nested.dart';
 
-import 'package:vector_math/vector_math_64.dart' show Matrix4, Quad, Vector3;
+import 'package:vector_math/vector_math_64.dart' show Quad;
 
 typedef InteractiveViewerWidgetBuilder = Widget Function(
     BuildContext context, Quad viewport);
@@ -28,7 +28,7 @@ class InteractiveViewerModifier extends SingleChildStatelessWidget {
   })  : builder = null,
         super(key: key, child: child);
 
-  InteractiveViewerModifier.builder({
+  const InteractiveViewerModifier.builder({
     Key? key,
     Widget? child,
     this.modifierKey,
