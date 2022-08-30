@@ -36,3 +36,40 @@ class SafeAreaModifier extends SingleChildStatelessWidget {
     );
   }
 }
+
+class SliverSafeAreaModifier extends SingleChildStatelessWidget {
+  const SliverSafeAreaModifier({
+    Key? key,
+    Widget? sliver,
+    this.modifierKey,
+    this.left = true,
+    this.top = true,
+    this.right = true,
+    this.bottom = true,
+    this.minimum = EdgeInsets.zero,
+  }) : super(key: key, child: sliver);
+
+  final Key? modifierKey;
+  final bool left;
+
+  final bool top;
+
+  final bool right;
+
+  final bool bottom;
+
+  final EdgeInsets minimum;
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
+    return SliverSafeArea(
+      key: modifierKey,
+      top: top,
+      left: left,
+      bottom: bottom,
+      right: right,
+      minimum: minimum,
+      sliver: child!,
+    );
+  }
+}
