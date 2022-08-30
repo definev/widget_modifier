@@ -116,3 +116,25 @@
         * `SingleChildScrollView`
         * `SizeChangedLayoutNotifier`
         * `SliverLayoutBuilder`
+        * `DefaultTextStyle`
+        * `DefaultTextHeightBehavior`
+        * `TickerMode`
+        * `Title`
+        * `SlideTransition`
+        * `ScaleTransition`
+        * `RotationTransition`
+        * `SizeTransition`
+        * `FadeTransition`
+        * `SliverFadeTransition`
+        * `PositionedTransition`
+        * `RelativePositionedTransition`
+        * `DecoratedBoxTransition`
+        * `AlignTransition`
+        * `DefaultTextStyleTransition`
+        * `AnimatedBuilder`
+        * `TweenAnimationBuilder`
+        * `ValueListenableBuilder`
+        * `Visibility`
+        * `SliverVisibility`
+        * `WidgetInspector`
+        * `WillPopScope`
