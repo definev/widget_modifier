@@ -59,7 +59,7 @@ class _ModifierComplexBenchmarkViewState
           return;
         }
         _children.addAll(_baseLayer);
-        print(_children.length);
+        debugPrint(_children.length.toString());
         setState(() {});
       },
     );

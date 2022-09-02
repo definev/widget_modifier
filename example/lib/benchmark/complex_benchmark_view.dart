@@ -25,7 +25,7 @@ class _ComplexBenchmarkViewState extends State<ComplexBenchmarkView> {
             color: const Color(0xFFffd2dd),
           ),
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: IntrinsicHeight(
               child: child,
             ),
@@ -49,7 +49,7 @@ class _ComplexBenchmarkViewState extends State<ComplexBenchmarkView> {
           return;
         }
         total += 1;
-        print(total * 5);
+        debugPrint((total * 5).toString());
         setState(() {});
       },
     );
