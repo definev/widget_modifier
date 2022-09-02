@@ -14,7 +14,7 @@ class AutomaticKeepAliveModifier extends SingleChildStatelessWidget {
   Widget buildWithChild(BuildContext context, Widget? child) {
     return AutomaticKeepAlive(
       key: modifierKey,
-      child: child,
+      child: child!,
     );
   }
 }

@@ -6,6 +6,26 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:nested/nested.dart';
 
+class DirectionalityModifier extends SingleChildStatelessWidget {
+  const DirectionalityModifier({
+    super.key,
+    super.child,
+    this.modifierKey,
+    required this.textDirection,
+  });
+
+  final Key? modifierKey;
+  final TextDirection textDirection;
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
+    return Directionality(
+      key: modifierKey,
+      textDirection: textDirection,
+      child: child!,
+    );
+  }
+}
 
 class OpacityModifier extends SingleChildStatelessWidget {
   const OpacityModifier({
@@ -32,7 +52,6 @@ class OpacityModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class ShaderMaskModifier extends SingleChildStatelessWidget {
   const ShaderMaskModifier({
     Key? key,
@@ -57,7 +76,6 @@ class ShaderMaskModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class BackdropFilterModifier extends SingleChildStatelessWidget {
   const BackdropFilterModifier({
     Key? key,
@@ -81,7 +99,6 @@ class BackdropFilterModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class CustomPaintModifier extends SingleChildStatelessWidget {
   const CustomPaintModifier({
@@ -119,7 +136,6 @@ class CustomPaintModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class ClipRectModifier extends SingleChildStatelessWidget {
   const ClipRectModifier({
     Key? key,
@@ -143,7 +159,6 @@ class ClipRectModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class ClipRRectModifier extends SingleChildStatelessWidget {
   const ClipRRectModifier({
@@ -170,7 +185,6 @@ class ClipRRectModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class ClipOvalModifier extends SingleChildStatelessWidget {
   const ClipOvalModifier({
     Key? key,
@@ -194,7 +208,6 @@ class ClipOvalModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class ClipPathModifier extends SingleChildStatelessWidget {
   const ClipPathModifier({
@@ -240,7 +253,6 @@ class ClipPathModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class PhysicalModelModifier extends SingleChildStatelessWidget {
   const PhysicalModelModifier({
     Key? key,
@@ -278,7 +290,6 @@ class PhysicalModelModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class PhysicalShapeModifier extends SingleChildStatelessWidget {
   const PhysicalShapeModifier({
     Key? key,
@@ -312,7 +323,6 @@ class PhysicalShapeModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class TransformModifier extends SingleChildStatelessWidget {
   const TransformModifier({
@@ -426,7 +436,6 @@ class TransformModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class CompositedTransformTargetModifier extends SingleChildStatelessWidget {
   const CompositedTransformTargetModifier({
     Key? key,
@@ -444,7 +453,6 @@ class CompositedTransformTargetModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class CompositedTransformFollowerModifier extends SingleChildStatelessWidget {
   const CompositedTransformFollowerModifier({
@@ -479,7 +487,6 @@ class CompositedTransformFollowerModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class FittedBoxModifier extends SingleChildStatelessWidget {
   const FittedBoxModifier({
     Key? key,
@@ -507,7 +514,6 @@ class FittedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class FractionalTranslationModifier extends SingleChildStatelessWidget {
   const FractionalTranslationModifier({
     Key? key,
@@ -532,7 +538,6 @@ class FractionalTranslationModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class RotatedBoxModifier extends SingleChildStatelessWidget {
   const RotatedBoxModifier({
     Key? key,
@@ -554,7 +559,6 @@ class RotatedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class PaddingModifier extends SingleChildStatelessWidget {
   const PaddingModifier({
     Key? key,
@@ -575,7 +579,6 @@ class PaddingModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class AlignModifier extends SingleChildStatelessWidget {
   const AlignModifier({
@@ -623,7 +626,6 @@ class CenterModifier extends AlignModifier {
         );
 }
 
-
 class CustomSingleChildLayoutModifier extends SingleChildStatelessWidget {
   const CustomSingleChildLayoutModifier({
     Key? key,
@@ -644,7 +646,6 @@ class CustomSingleChildLayoutModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class LayoutIdModifier extends SingleChildStatelessWidget {
   const LayoutIdModifier({
@@ -667,7 +668,6 @@ class LayoutIdModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class SizedBoxModifier extends SingleChildStatelessWidget {
   const SizedBoxModifier({
@@ -719,7 +719,6 @@ class SizedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class ConstrainedBoxModifier extends SingleChildStatelessWidget {
   ConstrainedBoxModifier({
     Key? key,
@@ -741,7 +740,6 @@ class ConstrainedBoxModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class ConstraintsTransformBoxModifier extends SingleChildStatelessWidget {
   const ConstraintsTransformBoxModifier({
@@ -778,7 +776,6 @@ class ConstraintsTransformBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class UnconstrainedBoxModifier extends SingleChildStatelessWidget {
   const UnconstrainedBoxModifier({
     Key? key,
@@ -809,7 +806,6 @@ class UnconstrainedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class FractionallySizedBoxModifier extends SingleChildStatelessWidget {
   const FractionallySizedBoxModifier({
     Key? key,
@@ -836,7 +832,6 @@ class FractionallySizedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class LimitedBoxModifier extends SingleChildStatelessWidget {
   const LimitedBoxModifier({
     Key? key,
@@ -862,7 +857,6 @@ class LimitedBoxModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class OverflowBoxModifier extends SingleChildStatelessWidget {
   const OverflowBoxModifier({
@@ -897,7 +891,6 @@ class OverflowBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class SizedOverflowBoxModifier extends SingleChildStatelessWidget {
   const SizedOverflowBoxModifier({
     Key? key,
@@ -922,7 +915,6 @@ class SizedOverflowBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class OffstageModifier extends SingleChildStatelessWidget {
   const OffstageModifier({
     Key? key,
@@ -943,7 +935,6 @@ class OffstageModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class AspectRatioModifier extends SingleChildStatelessWidget {
   const AspectRatioModifier({
@@ -966,7 +957,6 @@ class AspectRatioModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class IntrinsicWidthModifier extends SingleChildStatelessWidget {
   const IntrinsicWidthModifier({
@@ -994,7 +984,6 @@ class IntrinsicWidthModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class IntrinsicHeightModifier extends SingleChildStatelessWidget {
   const IntrinsicHeightModifier({
     Key? key,
@@ -1012,7 +1001,6 @@ class IntrinsicHeightModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class BaselineModifier extends SingleChildStatelessWidget {
   const BaselineModifier({
@@ -1038,7 +1026,6 @@ class BaselineModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class SliverToBoxAdapterModifier extends SingleChildStatelessWidget {
   const SliverToBoxAdapterModifier({
     Key? key,
@@ -1053,7 +1040,6 @@ class SliverToBoxAdapterModifier extends SingleChildStatelessWidget {
     return SliverToBoxAdapter(key: modifierKey, child: child);
   }
 }
-
 
 class SliverPaddingModifier extends SingleChildStatelessWidget {
   const SliverPaddingModifier({
@@ -1074,7 +1060,6 @@ class SliverPaddingModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class PositionedModifier extends SingleChildStatelessWidget {
   const PositionedModifier({
@@ -1183,7 +1168,6 @@ class PositionedModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class PositionedDirectionalModifier extends SingleChildStatelessWidget {
   const PositionedDirectionalModifier({
     Key? key,
@@ -1222,7 +1206,6 @@ class PositionedDirectionalModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class FlexibleModifier extends SingleChildStatelessWidget {
   const FlexibleModifier({
     Key? key,
@@ -1254,7 +1237,6 @@ class ExpandedModifier extends FlexibleModifier {
     int? flex,
   }) : super(fit: FlexFit.tight, key: key, child: child, flex: flex ?? 1);
 }
-
 
 class ListenerModifier extends SingleChildStatelessWidget {
   const ListenerModifier({
@@ -1296,7 +1278,6 @@ class ListenerModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class MouseRegionModifier extends SingleChildStatelessWidget {
   const MouseRegionModifier({
     Key? key,
@@ -1333,7 +1314,6 @@ class MouseRegionModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class RepaintBoundaryModifier extends SingleChildStatelessWidget {
   const RepaintBoundaryModifier({
     Key? key,
@@ -1365,7 +1345,6 @@ class RepaintBoundaryModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class IgnorePointerModifier extends SingleChildStatelessWidget {
   const IgnorePointerModifier({
     Key? key,
@@ -1389,7 +1368,6 @@ class IgnorePointerModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class AbsorbPointerModifier extends SingleChildStatelessWidget {
   const AbsorbPointerModifier({
@@ -1415,7 +1393,6 @@ class AbsorbPointerModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class MetaDataModifier extends SingleChildStatelessWidget {
   const MetaDataModifier({
     Key? key,
@@ -1439,7 +1416,6 @@ class MetaDataModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class SemanticsModifier extends SingleChildStatelessWidget {
   SemanticsModifier({
@@ -1607,7 +1583,6 @@ class SemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class MergeSemanticsModifier extends SingleChildStatelessWidget {
   const MergeSemanticsModifier({Key? key, Widget? child, this.modifierKey})
       : super(key: key, child: child);
@@ -1619,7 +1594,6 @@ class MergeSemanticsModifier extends SingleChildStatelessWidget {
     return MergeSemantics(key: modifierKey, child: child);
   }
 }
-
 
 class BlockSemanticsModifier extends SingleChildStatelessWidget {
   const BlockSemanticsModifier(
@@ -1638,7 +1612,6 @@ class BlockSemanticsModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class ExcludeSemanticsModifier extends SingleChildStatelessWidget {
   const ExcludeSemanticsModifier({
@@ -1661,7 +1634,6 @@ class ExcludeSemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-
 class IndexedSemanticsModifier extends SingleChildStatelessWidget {
   const IndexedSemanticsModifier({
     Key? key,
@@ -1682,7 +1654,6 @@ class IndexedSemanticsModifier extends SingleChildStatelessWidget {
     );
   }
 }
-
 
 class KeyedSubtreeModifier extends SingleChildStatelessWidget {
   const KeyedSubtreeModifier({
@@ -1718,6 +1689,46 @@ class KeyedSubtreeModifier extends SingleChildStatelessWidget {
   Widget buildWithChild(BuildContext context, Widget? child) => child!;
 }
 
+typedef SingleChildWidgetBuilder = Widget Function(
+  BuildContext context,
+  Widget? child,
+);
+
+class BuilderModifier extends SingleChildStatelessWidget {
+  const BuilderModifier({super.key, required this.builder});
+
+  final SingleChildWidgetBuilder builder;
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) =>
+      builder(context, child);
+}
+
+typedef SingleChildStatefulWidgetBuilder = Widget Function(
+  BuildContext context,
+  StateSetter setState,
+  Widget? child,
+);
+
+class StatefulBuilderModifier extends SingleChildStatefulWidget {
+  const StatefulBuilderModifier({
+    super.key,
+    required this.builder,
+  });
+
+  final SingleChildStatefulWidgetBuilder builder;
+
+  @override
+  State<StatefulWidget> createState() => _StatefulBuilderModifierState();
+}
+
+class _StatefulBuilderModifierState extends State<StatefulBuilderModifier>
+    with SingleChildStateMixin<StatefulBuilderModifier> {
+  @override
+  Widget buildWithChild(BuildContext context, Widget child) {
+    return widget.builder(context, setState, child);
+  }
+}
 
 class ColoredBoxModifier extends SingleChildStatelessWidget {
   const ColoredBoxModifier(

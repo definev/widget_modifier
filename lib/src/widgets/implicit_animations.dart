@@ -563,3 +563,37 @@ class AnimatedPhysicalModelModifier
     );
   }
 }
+
+class AnimatedFractionallySizedBoxModifier
+    extends SingleChildImplicitlyAnimatedWidget {
+  const AnimatedFractionallySizedBoxModifier({
+    super.key,
+    super.child,
+    this.modifierKey,
+    this.alignment = Alignment.center,
+    this.heightFactor,
+    this.widthFactor,
+    super.curve,
+    required super.duration,
+    super.onEnd,
+  });
+
+  final Key? modifierKey;
+  final double? heightFactor;
+  final double? widthFactor;
+  final AlignmentGeometry alignment;
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
+    return AnimatedFractionallySizedBox(
+      key: modifierKey,
+      duration: duration,
+      alignment: alignment,
+      curve: curve,
+      heightFactor: heightFactor,
+      widthFactor: widthFactor,
+      onEnd: onEnd,
+      child: child,
+    );
+  }
+}

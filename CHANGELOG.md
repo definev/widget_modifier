@@ -138,3 +138,23 @@
         * `SliverVisibility`
         * `WidgetInspector`
         * `WillPopScope`
+        * `RawAutocomplete`
+        * `AutocompleteHighlightedOption`
+        * `AutofillGroup`
+        * `Banner`
+        * `CheckedModeBanner`
+        * `Directionality`
+        * `Builder`
+        * `StatefulBuilder`
+        * `DefaultSelectionStyle`
+        * `DisplayFeatureSubScreen`
+        * `Draggable`
+        * `LongPressDraggable`
+        * `DragTarget`
+        * `DraggableScrollableSheet`
+        * `FocusTraversalGroup`
+        * `FocusTraversalOrder`
+        * `ExcludeFocusTraversal`
+        * `Hero`
+        * `HeroMode`
+        * `AnimatedFractionallySizedBox`
