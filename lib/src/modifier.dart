@@ -1,3 +1,11 @@
 import 'package:nested/nested.dart';
 
-typedef Modifier = Nested;
+class Modifier extends Nested {
+  Modifier({
+    required List<SingleChildWidget> modifiers,
+    super.key,
+    super.child,
+  }) : super(children: modifiers);
+}
+
+typedef SingleChildModifier = SingleChildWidget;

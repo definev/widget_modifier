@@ -1,5 +1,7 @@
 library material;
 
+export 'widgets.dart';
+
 export 'src/material/about.dart';
 export 'src/material/banner.dart';
 export 'src/material/bottom_app_bar.dart';

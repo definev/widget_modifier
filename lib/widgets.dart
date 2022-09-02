@@ -1,5 +1,7 @@
 library material;
 
+export 'src/modifier.dart';
+
 export 'src/widgets/actions.dart';
 export 'src/widgets/animated_size.dart';
 export 'src/widgets/annotated_region.dart';
