@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class AboutListTileModifier extends SingleChildStatelessWidget {
+class AboutListTileModifier extends SingleChildStatelessModifier {
   const AboutListTileModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.icon,
     this.applicationName,
     this.applicationVersion,
@@ -15,7 +15,6 @@ class AboutListTileModifier extends SingleChildStatelessWidget {
     this.dense,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Widget? icon;
   final String? applicationName;
   final String? applicationVersion;

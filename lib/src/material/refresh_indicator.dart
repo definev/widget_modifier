@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class RefreshIndicatorModifier extends SingleChildStatelessWidget {
+class RefreshIndicatorModifier extends SingleChildStatelessModifier {
   const RefreshIndicatorModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.displacement = 40.0,
     this.edgeOffset = 0.0,
     required this.onRefresh,
@@ -18,7 +18,6 @@ class RefreshIndicatorModifier extends SingleChildStatelessWidget {
     this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
   });
 
-  final Key? modifierKey;
   final double displacement;
   final double edgeOffset;
   final RefreshCallback onRefresh;

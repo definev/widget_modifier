@@ -1,14 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DefaultTextEditingShortcutsModifier extends SingleChildStatelessWidget {
+class DefaultTextEditingShortcutsModifier extends SingleChildStatelessModifier {
   const DefaultTextEditingShortcutsModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   }) : super(key: key);
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {

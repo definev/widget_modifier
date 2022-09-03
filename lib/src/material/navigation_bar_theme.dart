@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class NavigationBarThemeModifier extends SingleChildStatelessWidget {
+class NavigationBarThemeModifier extends SingleChildStatelessModifier {
   const NavigationBarThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final NavigationBarThemeData data;
 
   @override

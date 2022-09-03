@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class GridTileModifier extends SingleChildStatelessWidget {
+class GridTileModifier extends SingleChildStatelessModifier {
   const GridTileModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.header,
     this.footer,
   });
 
-  final Key? modifierKey;
   final Widget? header;
   final Widget? footer;
 

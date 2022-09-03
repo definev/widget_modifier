@@ -1,18 +1,17 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class SlideTransitionModifier extends SingleChildStatelessWidget {
+class SlideTransitionModifier extends SingleChildStatelessModifier {
   const SlideTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.position,
     this.transformHitTests = true,
     this.textDirection,
   }) : super(key: key, child: child);
 
   final Animation<Offset> position;
-  final Key? modifierKey;
   final TextDirection? textDirection;
   final bool transformHitTests;
 
@@ -28,17 +27,16 @@ class SlideTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ScaleTransitionModifier extends SingleChildStatelessWidget {
+class ScaleTransitionModifier extends SingleChildStatelessModifier {
   const ScaleTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.scale,
     this.alignment = Alignment.center,
     this.filterQuality,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<double> scale;
   final Alignment alignment;
   final FilterQuality? filterQuality;
@@ -55,17 +53,16 @@ class ScaleTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RotationTransitionModifier extends SingleChildStatelessWidget {
+class RotationTransitionModifier extends SingleChildStatelessModifier {
   const RotationTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.turns,
     this.alignment = Alignment.center,
     this.filterQuality,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<double> turns;
   final Alignment alignment;
   final FilterQuality? filterQuality;
@@ -82,17 +79,16 @@ class RotationTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SizeTransitionModifier extends SingleChildStatelessWidget {
+class SizeTransitionModifier extends SingleChildStatelessModifier {
   const SizeTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.axis = Axis.vertical,
     required this.sizeFactor,
     this.axisAlignment = 0.0,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Axis axis;
   final Animation<double> sizeFactor;
   final double axisAlignment;
@@ -109,16 +105,15 @@ class SizeTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FadeTransitionModifier extends SingleChildStatelessWidget {
+class FadeTransitionModifier extends SingleChildStatelessModifier {
   const FadeTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<double> opacity;
   final bool alwaysIncludeSemantics;
 
@@ -133,16 +128,15 @@ class FadeTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverFadeTransitionModifier extends SingleChildStatelessWidget {
+class SliverFadeTransitionModifier extends SingleChildStatelessModifier {
   const SliverFadeTransitionModifier({
     Key? key,
     Widget? sliver,
-    this.modifierKey,
+    super.modifierKey,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
   }) : super(key: key, child: sliver);
 
-  final Key? modifierKey;
   final Animation<double> opacity;
   final bool alwaysIncludeSemantics;
 
@@ -157,15 +151,14 @@ class SliverFadeTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PositionedTransitionModifier extends SingleChildStatelessWidget {
+class PositionedTransitionModifier extends SingleChildStatelessModifier {
   const PositionedTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.rect,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<RelativeRect> rect;
 
   @override
@@ -178,16 +171,16 @@ class PositionedTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RelativePositionedTransitionModifier extends SingleChildStatelessWidget {
+class RelativePositionedTransitionModifier
+    extends SingleChildStatelessModifier {
   const RelativePositionedTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.rect,
     required this.size,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<Rect?> rect;
   final Size size;
 
@@ -202,16 +195,15 @@ class RelativePositionedTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class DecoratedBoxTransitionModifier extends SingleChildStatelessWidget {
+class DecoratedBoxTransitionModifier extends SingleChildStatelessModifier {
   const DecoratedBoxTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.decoration,
     this.position = DecorationPosition.background,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<Decoration> decoration;
   final DecorationPosition position;
 
@@ -226,17 +218,16 @@ class DecoratedBoxTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class AlignTransitionModifier extends SingleChildStatelessWidget {
+class AlignTransitionModifier extends SingleChildStatelessModifier {
   const AlignTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.alignment,
     this.widthFactor,
     this.heightFactor,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<AlignmentGeometry> alignment;
   final double? widthFactor;
   final double? heightFactor;
@@ -253,11 +244,11 @@ class AlignTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class DefaultTextStyleTransitionModifier extends SingleChildStatelessWidget {
+class DefaultTextStyleTransitionModifier extends SingleChildStatelessModifier {
   const DefaultTextStyleTransitionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.style,
     this.textAlign,
     this.softWrap = true,
@@ -265,7 +256,6 @@ class DefaultTextStyleTransitionModifier extends SingleChildStatelessWidget {
     this.maxLines,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Animation<TextStyle> style;
   final TextAlign? textAlign;
   final bool softWrap;
@@ -286,16 +276,15 @@ class DefaultTextStyleTransitionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class AnimatedBuilderModifier extends SingleChildStatelessWidget {
+class AnimatedBuilderModifier extends SingleChildStatelessModifier {
   const AnimatedBuilderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.animation,
     required this.builder,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Listenable animation;
   final TransitionBuilder builder;
 

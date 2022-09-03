@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DisplayFeatureSubScreenModifier extends SingleChildStatelessWidget {
+class DisplayFeatureSubScreenModifier extends SingleChildStatelessModifier {
   const DisplayFeatureSubScreenModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.anchorPoint,
   });
 
-  final Key? modifierKey;
   final Offset? anchorPoint;
 
   @override

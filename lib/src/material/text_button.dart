@@ -1,12 +1,11 @@
 import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class TextButtonModifier extends SingleChildStatelessWidget {
+class TextButtonModifier extends SingleChildStatelessModifier {
   const TextButtonModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.onHover,
@@ -47,7 +46,6 @@ class TextButtonModifier extends SingleChildStatelessWidget {
         clipBehavior: clipBehavior,
       );
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHover;
@@ -76,10 +74,10 @@ class TextButtonModifier extends SingleChildStatelessWidget {
   }
 }
 
-class _TextButtonWithIcon extends SingleChildStatelessWidget {
+class _TextButtonWithIcon extends SingleChildStatelessModifier {
   const _TextButtonWithIcon({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.onHover,
@@ -92,7 +90,6 @@ class _TextButtonWithIcon extends SingleChildStatelessWidget {
     required this.label,
   });
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHover;

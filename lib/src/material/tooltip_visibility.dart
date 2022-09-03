@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class TooltipVisibilityModifier extends SingleChildStatelessWidget {
+class TooltipVisibilityModifier extends SingleChildStatelessModifier {
   const TooltipVisibilityModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.visible,
   });
 
-  final Key? modifierKey;
   final bool visible;
 
   @override

@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class RawKeyboardListenerModifier extends SingleChildStatelessWidget {
+class RawKeyboardListenerModifier extends SingleChildStatelessModifier {
   const RawKeyboardListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.focusNode,
     this.autofocus = false,
     this.includeSemantics = true,
@@ -13,7 +13,6 @@ class RawKeyboardListenerModifier extends SingleChildStatelessWidget {
   })  : assert(child != null),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final FocusNode focusNode;
   final bool autofocus;
   final bool includeSemantics;

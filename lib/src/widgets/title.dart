@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class TitleModifier extends SingleChildStatelessWidget {
+class TitleModifier extends SingleChildStatelessModifier {
   const TitleModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.title = '',
     required this.color,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final String title;
   final Color color;
 

@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class DialogModifier extends SingleChildStatelessWidget {
+class DialogModifier extends SingleChildStatelessModifier {
   const DialogModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.backgroundColor,
     this.elevation,
     this.insetAnimationDuration = const Duration(milliseconds: 100),
@@ -16,7 +16,6 @@ class DialogModifier extends SingleChildStatelessWidget {
     this.alignment,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Color? backgroundColor;
   final double? elevation;
   final Duration insetAnimationDuration;
@@ -43,16 +42,15 @@ class DialogModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SimpleDialogOptionModifier extends SingleChildStatelessWidget {
+class SimpleDialogOptionModifier extends SingleChildStatelessModifier {
   const SimpleDialogOptionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onPressed,
     this.padding,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final EdgeInsets? padding;
 

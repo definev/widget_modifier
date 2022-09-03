@@ -1,10 +1,10 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class IconButtonModifier extends SingleChildStatelessWidget {
+class IconButtonModifier extends SingleChildStatelessModifier {
   const IconButtonModifier({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     this.iconSize,
     this.visualDensity,
     this.padding = const EdgeInsets.all(8.0),
@@ -29,7 +29,6 @@ class IconButtonModifier extends SingleChildStatelessWidget {
     required this.icon,
   });
 
-  final Key? modifierKey;
   final double? iconSize;
   final VisualDensity? visualDensity;
   final EdgeInsetsGeometry padding;

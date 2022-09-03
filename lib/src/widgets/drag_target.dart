@@ -1,14 +1,14 @@
 // ignore_for_file: deprecated_member_use_from_same_package, deprecated_member_use
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DraggableModifier<T extends Object> extends SingleChildStatelessWidget {
+class DraggableModifier<T extends Object> extends SingleChildStatelessModifier {
   const DraggableModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.feedback,
     this.data,
     this.axis,
@@ -35,7 +35,6 @@ class DraggableModifier<T extends Object> extends SingleChildStatelessWidget {
     this.hitTestBehavior = HitTestBehavior.deferToChild,
   });
 
-  final Key? modifierKey;
   final T? data;
   final Axis? axis;
   final Widget? childWhenDragging;
@@ -87,11 +86,11 @@ class DraggableModifier<T extends Object> extends SingleChildStatelessWidget {
 }
 
 class LongPressDraggableModifier<T extends Object>
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const LongPressDraggableModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.feedback,
     this.data,
     this.axis,
@@ -120,7 +119,6 @@ class LongPressDraggableModifier<T extends Object>
     this.delay = kLongPressTimeout,
   });
 
-  final Key? modifierKey;
   final T? data;
   final Axis? axis;
   final Widget? childWhenDragging;
@@ -180,11 +178,12 @@ typedef SingleChildDragTargetBuilder<T> = Widget Function(
   Widget? child,
 );
 
-class DragTargetModifier<T extends Object> extends SingleChildStatelessWidget {
+class DragTargetModifier<T extends Object>
+    extends SingleChildStatelessModifier {
   const DragTargetModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.builder,
     this.onWillAccept,
     this.onAccept,
@@ -194,7 +193,6 @@ class DragTargetModifier<T extends Object> extends SingleChildStatelessWidget {
     this.hitTestBehavior = HitTestBehavior.translucent,
   });
 
-  final Key? modifierKey;
   final SingleChildDragTargetBuilder<T> builder;
   final DragTargetWillAccept<T>? onWillAccept;
   final DragTargetAccept<T>? onAccept;

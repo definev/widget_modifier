@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class HeroModifier extends SingleChildStatelessWidget {
+class HeroModifier extends SingleChildStatelessModifier {
   const HeroModifier({
     super.key,
     required this.tag,
-    this.modifierKey,
+    super.modifierKey,
     this.createRectTween,
     this.flightShuttleBuilder,
     this.placeholderBuilder,
@@ -13,7 +13,6 @@ class HeroModifier extends SingleChildStatelessWidget {
     super.child,
   });
 
-  final Key? modifierKey;
   final Object tag;
   final CreateRectTween? createRectTween;
   final HeroFlightShuttleBuilder? flightShuttleBuilder;
@@ -34,15 +33,14 @@ class HeroModifier extends SingleChildStatelessWidget {
   }
 }
 
-class HeroModeModifier extends SingleChildStatelessWidget {
+class HeroModeModifier extends SingleChildStatelessModifier {
   const HeroModeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.enabled = true,
   });
 
-  final Key? modifierKey;
   final bool enabled;
 
   @override

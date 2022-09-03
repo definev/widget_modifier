@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class BackButtonListenerModifier extends SingleChildStatelessWidget {
+class BackButtonListenerModifier extends SingleChildStatelessModifier {
   const BackButtonListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onBackButtonPressed,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ValueGetter<Future<bool>> onBackButtonPressed;
 
   @override

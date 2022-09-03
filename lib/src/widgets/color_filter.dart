@@ -1,9 +1,9 @@
 import 'dart:ui' as ui;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class ColorFilteredModifier extends SingleChildStatelessWidget {
+class ColorFilteredModifier extends SingleChildStatelessModifier {
   const ColorFilteredModifier({
     Key? key,
     Widget? child,

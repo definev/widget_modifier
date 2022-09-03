@@ -1,7 +1,7 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class ActionListenerModifier extends SingleChildStatelessWidget {
+class ActionListenerModifier extends SingleChildStatelessModifier {
   const ActionListenerModifier({
     Key? key,
     required this.listener,
@@ -21,7 +21,7 @@ class ActionListenerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ActionsModifier extends SingleChildStatelessWidget {
+class ActionsModifier extends SingleChildStatelessModifier {
   const ActionsModifier({
     Key? key,
     this.dispatcher,
@@ -39,11 +39,11 @@ class ActionsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FocusableActionDetectorModifier extends SingleChildStatelessWidget {
+class FocusableActionDetectorModifier extends SingleChildStatelessModifier {
   const FocusableActionDetectorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.enabled = true,
     this.focusNode,
     this.autofocus = false,
@@ -57,7 +57,6 @@ class FocusableActionDetectorModifier extends SingleChildStatelessWidget {
     this.mouseCursor = MouseCursor.defer,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool enabled;
   final FocusNode? focusNode;
   final bool autofocus;

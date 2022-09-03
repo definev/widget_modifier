@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class TextSelectionThemeModifier extends SingleChildStatelessWidget {
+class TextSelectionThemeModifier extends SingleChildStatelessModifier {
   const TextSelectionThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final TextSelectionThemeData data;
 
   @override

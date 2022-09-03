@@ -1,18 +1,17 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 typedef SingleChildLayoutWidgetBuilder = Widget Function(
     BuildContext context, BoxConstraints constraints, Widget? child);
 
-class LayoutBuilderModifier extends SingleChildStatelessWidget {
+class LayoutBuilderModifier extends SingleChildStatelessModifier {
   const LayoutBuilderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.builder,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final SingleChildLayoutWidgetBuilder builder;
 
   @override

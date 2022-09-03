@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class WidgetInspectorModifier extends SingleChildStatelessWidget {
+class WidgetInspectorModifier extends SingleChildStatelessModifier {
   const WidgetInspectorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.selectButtonBuilder,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final InspectorSelectButtonBuilder? selectButtonBuilder;
 
   @override

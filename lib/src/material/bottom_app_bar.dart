@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class BottomAppBarModifier extends SingleChildStatelessWidget {
+class BottomAppBarModifier extends SingleChildStatelessModifier {
   const BottomAppBarModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.color,
     this.elevation,
     this.shape,
@@ -13,7 +13,6 @@ class BottomAppBarModifier extends SingleChildStatelessWidget {
     this.notchMargin = 4.0,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Color? color;
   final double? elevation;
   final NotchedShape? shape;

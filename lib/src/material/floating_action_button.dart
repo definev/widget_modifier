@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class FloatingActionButtonModifier extends SingleChildStatelessWidget {
+class FloatingActionButtonModifier extends SingleChildStatelessModifier {
   const FloatingActionButtonModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.tooltip,
     this.foregroundColor,
     this.backgroundColor,
@@ -199,7 +199,6 @@ class FloatingActionButtonModifier extends SingleChildStatelessWidget {
         tooltip: tooltip,
       );
 
-  final Key? modifierKey;
   final String? tooltip;
   final Color? foregroundColor;
   final Color? backgroundColor;
@@ -257,11 +256,11 @@ class FloatingActionButtonModifier extends SingleChildStatelessWidget {
   }
 }
 
-class _FloatingActionButtonModifierSmall extends SingleChildStatelessWidget {
+class _FloatingActionButtonModifierSmall extends SingleChildStatelessModifier {
   const _FloatingActionButtonModifierSmall({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.tooltip,
     this.foregroundColor,
     this.backgroundColor,
@@ -289,7 +288,6 @@ class _FloatingActionButtonModifierSmall extends SingleChildStatelessWidget {
         extendedTextStyle = null,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final String? tooltip;
   final Color? foregroundColor;
   final Color? backgroundColor;
@@ -345,11 +343,11 @@ class _FloatingActionButtonModifierSmall extends SingleChildStatelessWidget {
   }
 }
 
-class _FloatingActionButtonModifierLarge extends SingleChildStatelessWidget {
+class _FloatingActionButtonModifierLarge extends SingleChildStatelessModifier {
   const _FloatingActionButtonModifierLarge({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.tooltip,
     this.foregroundColor,
     this.backgroundColor,
@@ -377,7 +375,6 @@ class _FloatingActionButtonModifierLarge extends SingleChildStatelessWidget {
         extendedTextStyle = null,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final String? tooltip;
   final Color? foregroundColor;
   final Color? backgroundColor;
@@ -433,10 +430,11 @@ class _FloatingActionButtonModifierLarge extends SingleChildStatelessWidget {
   }
 }
 
-class _FloatingActionButtonModifierExtended extends SingleChildStatelessWidget {
+class _FloatingActionButtonModifierExtended
+    extends SingleChildStatelessModifier {
   const _FloatingActionButtonModifierExtended({
     Key? key,
-    this.modifierKey,
+    super.modifierKey,
     this.tooltip,
     this.foregroundColor,
     this.backgroundColor,
@@ -466,7 +464,6 @@ class _FloatingActionButtonModifierExtended extends SingleChildStatelessWidget {
   })  : mini = false,
         super(key: key, child: icon);
 
-  final Key? modifierKey;
   final String? tooltip;
   final Color? foregroundColor;
   final Color? backgroundColor;

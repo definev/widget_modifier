@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'dart:math' as math;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ElevatedButtonModifier extends SingleChildStatelessWidget {
+class ElevatedButtonModifier extends SingleChildStatelessModifier {
   const ElevatedButtonModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.onHover,
@@ -34,7 +34,6 @@ class ElevatedButtonModifier extends SingleChildStatelessWidget {
     required Widget label,
   }) = _ElevatedButtonModifierWithIcon;
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHover;

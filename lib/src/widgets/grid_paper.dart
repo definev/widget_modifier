@@ -1,18 +1,17 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class GridPaperModifier extends SingleChildStatelessWidget {
+class GridPaperModifier extends SingleChildStatelessModifier {
   const GridPaperModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.color = const Color(0x7FC3E8F3),
     this.interval = 100.0,
     this.divisions = 2,
     this.subdivisions = 5,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Color color;
   final double interval;
   final int divisions;

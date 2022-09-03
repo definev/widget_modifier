@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ScrollbarThemeModifier extends SingleChildStatelessWidget {
+class ScrollbarThemeModifier extends SingleChildStatelessModifier {
   const ScrollbarThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final ScrollbarThemeData data;
 
   @override

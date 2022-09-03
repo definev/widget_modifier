@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ButtonThemeModifier extends SingleChildStatelessWidget {
+class ButtonThemeModifier extends SingleChildStatelessModifier {
   ButtonThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     ButtonTextTheme textTheme = ButtonTextTheme.normal,
     ButtonBarLayoutBehavior layoutBehavior = ButtonBarLayoutBehavior.padded,
     double minWidth = 88.0,
@@ -43,11 +43,10 @@ class ButtonThemeModifier extends SingleChildStatelessWidget {
   const ButtonThemeModifier.fromButtonThemeData({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ButtonThemeData data;
 
   @override

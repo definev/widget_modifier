@@ -1,5 +1,5 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 typedef SingleChildAutocompleteOptionsViewBuilder<T extends Object> = Widget
     Function(
@@ -10,10 +10,10 @@ typedef SingleChildAutocompleteOptionsViewBuilder<T extends Object> = Widget
 );
 
 class RawAutocompleteModifier<T extends Object>
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const RawAutocompleteModifier({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     required this.optionsViewBuilder,
     required this.optionsBuilder,
     this.displayStringForOption = defaultStringForOption,
@@ -24,7 +24,6 @@ class RawAutocompleteModifier<T extends Object>
     this.initialValue,
   });
 
-  final Key? modifierKey;
   final AutocompleteFieldViewBuilder? fieldViewBuilder;
   final FocusNode? focusNode;
   final SingleChildAutocompleteOptionsViewBuilder<T> optionsViewBuilder;
@@ -55,7 +54,8 @@ class RawAutocompleteModifier<T extends Object>
   }
 }
 
-class AutocompleteHighlightedOptionModifier extends SingleChildStatelessWidget {
+class AutocompleteHighlightedOptionModifier
+    extends SingleChildStatelessModifier {
   const AutocompleteHighlightedOptionModifier({
     super.key,
     required this.highlightIndexNotifier,

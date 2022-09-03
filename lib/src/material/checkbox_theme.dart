@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class CheckboxThemeModifier extends SingleChildStatelessWidget {
+class CheckboxThemeModifier extends SingleChildStatelessModifier {
   const CheckboxThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final CheckboxThemeData data;
 
   @override

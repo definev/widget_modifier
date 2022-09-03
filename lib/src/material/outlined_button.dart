@@ -1,12 +1,11 @@
 import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class OutlinedButtonModifier extends SingleChildStatelessWidget {
+class OutlinedButtonModifier extends SingleChildStatelessModifier {
   const OutlinedButtonModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.onHover,
@@ -43,7 +42,6 @@ class OutlinedButtonModifier extends SingleChildStatelessWidget {
         label: label,
       );
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHover;
@@ -72,10 +70,10 @@ class OutlinedButtonModifier extends SingleChildStatelessWidget {
   }
 }
 
-class _OutlinedButtonWithIcon extends SingleChildStatelessWidget {
+class _OutlinedButtonWithIcon extends SingleChildStatelessModifier {
   const _OutlinedButtonWithIcon({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.style,
@@ -86,7 +84,6 @@ class _OutlinedButtonWithIcon extends SingleChildStatelessWidget {
     required this.label,
   });
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ButtonStyle? style;

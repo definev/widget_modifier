@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class TickerModeModifier extends SingleChildStatelessWidget {
+class TickerModeModifier extends SingleChildStatelessModifier {
   const TickerModeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.enabled,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool enabled;
 
   @override

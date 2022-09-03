@@ -1,17 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class FormModifier extends SingleChildStatelessWidget {
+class FormModifier extends SingleChildStatelessModifier {
   const FormModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onWillPop,
     this.onChanged,
     this.autovalidateMode,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final WillPopCallback? onWillPop;
   final VoidCallback? onChanged;
   final AutovalidateMode? autovalidateMode;
@@ -33,11 +32,11 @@ typedef FormFieldModifierBuilder<T> = Widget Function(
   Widget? child,
 );
 
-class FormFieldModifier<T> extends SingleChildStatelessWidget {
+class FormFieldModifier<T> extends SingleChildStatelessModifier {
   const FormFieldModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.builder,
     this.onSaved,
     this.validator,
@@ -48,7 +47,6 @@ class FormFieldModifier<T> extends SingleChildStatelessWidget {
   })  : autovalidateMode = autovalidateMode ?? AutovalidateMode.disabled,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final FormFieldSetter<T>? onSaved;
   final FormFieldValidator<T>? validator;
   final FormFieldModifierBuilder<T> builder;

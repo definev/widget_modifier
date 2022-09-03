@@ -1,5 +1,5 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 typedef SingleChildScrollableWidgetBuilder = Widget Function(
   BuildContext context,
@@ -7,11 +7,11 @@ typedef SingleChildScrollableWidgetBuilder = Widget Function(
   Widget? child,
 );
 
-class DraggableScrollableSheetModifier extends SingleChildStatelessWidget {
+class DraggableScrollableSheetModifier extends SingleChildStatelessModifier {
   const DraggableScrollableSheetModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.initialChildSize = 0.5,
     this.minChildSize = 0.25,
     this.maxChildSize = 1.0,
@@ -22,7 +22,6 @@ class DraggableScrollableSheetModifier extends SingleChildStatelessWidget {
     required this.builder,
   });
 
-  final Key? modifierKey;
   final double initialChildSize;
   final double minChildSize;
   final double maxChildSize;
@@ -49,14 +48,15 @@ class DraggableScrollableSheetModifier extends SingleChildStatelessWidget {
   }
 }
 
-class DraggableScrollableActuatorModifier extends SingleChildStatelessWidget {
+class DraggableScrollableActuatorModifier extends SingleChildStatelessModifier {
   const DraggableScrollableActuatorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {

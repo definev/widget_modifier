@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class MaterialButtonModifier extends SingleChildStatelessWidget {
+class MaterialButtonModifier extends SingleChildStatelessModifier {
   const MaterialButtonModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onPressed,
     this.onLongPress,
     this.onHighlightChanged,
@@ -38,7 +38,6 @@ class MaterialButtonModifier extends SingleChildStatelessWidget {
     this.enableFeedback = true,
   });
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHighlightChanged;

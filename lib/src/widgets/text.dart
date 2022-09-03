@@ -1,13 +1,13 @@
 import 'dart:ui' as ui;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DefaultTextStyleModifier extends SingleChildStatelessWidget {
+class DefaultTextStyleModifier extends SingleChildStatelessModifier {
   const DefaultTextStyleModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.style,
     this.textAlign,
     this.softWrap = true,
@@ -46,7 +46,6 @@ class DefaultTextStyleModifier extends SingleChildStatelessWidget {
     );
   }
 
-  final Key? modifierKey;
   final TextStyle style;
   final TextAlign? textAlign;
   final bool softWrap;
@@ -71,15 +70,14 @@ class DefaultTextStyleModifier extends SingleChildStatelessWidget {
   }
 }
 
-class DefaultTextHeightBehaviorModifier extends SingleChildStatelessWidget {
+class DefaultTextHeightBehaviorModifier extends SingleChildStatelessModifier {
   const DefaultTextHeightBehaviorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.textHeightBehavior,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final TextHeightBehavior textHeightBehavior;
 
   @override

@@ -1,12 +1,12 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class GestureDetectorModifier extends SingleChildStatelessWidget {
+class GestureDetectorModifier extends SingleChildStatelessModifier {
   const GestureDetectorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onTapDown,
     this.onTapUp,
     this.onTap,
@@ -70,7 +70,6 @@ class GestureDetectorModifier extends SingleChildStatelessWidget {
     this.supportedDevices,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final GestureTapDownCallback? onTapDown;
   final GestureTapUpCallback? onTapUp;
   final GestureTapCallback? onTap;
@@ -202,18 +201,17 @@ class GestureDetectorModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RawGestureDetectorModifier extends SingleChildStatelessWidget {
+class RawGestureDetectorModifier extends SingleChildStatelessModifier {
   const RawGestureDetectorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.gestures = const <Type, GestureRecognizerFactory>{},
     this.behavior,
     this.semantics,
     this.excludeFromSemantics = false,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Map<Type, GestureRecognizerFactory> gestures;
   final HitTestBehavior? behavior;
   final bool excludeFromSemantics;

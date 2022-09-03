@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DecoratedBoxModifier extends SingleChildStatelessWidget {
+class DecoratedBoxModifier extends SingleChildStatelessModifier {
   const DecoratedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.decoration,
     this.position = DecorationPosition.background,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Decoration decoration;
   final DecorationPosition position;
 
@@ -25,11 +24,11 @@ class DecoratedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ContainerModifier extends SingleChildStatelessWidget {
+class ContainerModifier extends SingleChildStatelessModifier {
   const ContainerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.alignment,
     this.padding,
     this.color,
@@ -44,7 +43,6 @@ class ContainerModifier extends SingleChildStatelessWidget {
     this.clipBehavior = Clip.none,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final double? width;
   final double? height;
   final BoxConstraints? constraints;

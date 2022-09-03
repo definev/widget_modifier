@@ -1,16 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class StretchingOverscrollIndicatorModifier extends SingleChildStatelessWidget {
+class StretchingOverscrollIndicatorModifier
+    extends SingleChildStatelessModifier {
   const StretchingOverscrollIndicatorModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.axisDirection,
     this.notificationPredicate = defaultScrollNotificationPredicate,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final AxisDirection axisDirection;
   final ScrollNotificationPredicate notificationPredicate;
 

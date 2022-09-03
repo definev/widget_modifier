@@ -1,17 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
 class TextSelectionToolbarTextButtonModifier
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const TextSelectionToolbarTextButtonModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.padding,
     this.onPressed,
   });
 
-  final Key? modifierKey;
   final VoidCallback? onPressed;
   final EdgeInsets padding;
 

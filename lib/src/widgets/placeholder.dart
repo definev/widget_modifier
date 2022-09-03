@@ -1,18 +1,17 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class PlaceholderModifier extends SingleChildStatelessWidget {
+class PlaceholderModifier extends SingleChildStatelessModifier {
   const PlaceholderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.color = const Color(0xFF455A64),
     this.strokeWidth = 2.0,
     this.fallbackWidth = 400.0,
     this.fallbackHeight = 400.0,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Color color;
   final double strokeWidth;
   final double fallbackWidth;

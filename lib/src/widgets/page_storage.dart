@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class PageStorageModifier extends SingleChildStatelessWidget {
+class PageStorageModifier extends SingleChildStatelessModifier {
   const PageStorageModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.bucket,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final PageStorageBucket bucket;
 
   @override

@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class SelectionAreaModifier extends SingleChildStatelessWidget {
+class SelectionAreaModifier extends SingleChildStatelessModifier {
   const SelectionAreaModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.focusNode,
     this.selectionControls,
   });
 
-  final Key? modifierKey;
   final FocusNode? focusNode;
   final TextSelectionControls? selectionControls;
 

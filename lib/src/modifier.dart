@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nested/nested.dart';
 
 class Modifier extends Nested {

@@ -1,20 +1,20 @@
 import 'dart:ui' as ui;
 import 'dart:math' as math;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:nested/nested.dart';
 
-class DirectionalityModifier extends SingleChildStatelessWidget {
+class DirectionalityModifier extends SingleChildStatelessModifier {
   const DirectionalityModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.textDirection,
   });
 
-  final Key? modifierKey;
   final TextDirection textDirection;
 
   @override
@@ -27,17 +27,16 @@ class DirectionalityModifier extends SingleChildStatelessWidget {
   }
 }
 
-class OpacityModifier extends SingleChildStatelessWidget {
+class OpacityModifier extends SingleChildStatelessModifier {
   const OpacityModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
   })  : assert(opacity >= 0.0 && opacity <= 1.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final double opacity;
   final bool alwaysIncludeSemantics;
 
@@ -52,16 +51,15 @@ class OpacityModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ShaderMaskModifier extends SingleChildStatelessWidget {
+class ShaderMaskModifier extends SingleChildStatelessModifier {
   const ShaderMaskModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.shaderCallback,
     this.blendMode = BlendMode.modulate,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ShaderCallback shaderCallback;
   final BlendMode blendMode;
 
@@ -76,16 +74,15 @@ class ShaderMaskModifier extends SingleChildStatelessWidget {
   }
 }
 
-class BackdropFilterModifier extends SingleChildStatelessWidget {
+class BackdropFilterModifier extends SingleChildStatelessModifier {
   const BackdropFilterModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.filter,
     this.blendMode = BlendMode.srcOver,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ui.ImageFilter filter;
   final BlendMode blendMode;
 
@@ -100,11 +97,11 @@ class BackdropFilterModifier extends SingleChildStatelessWidget {
   }
 }
 
-class CustomPaintModifier extends SingleChildStatelessWidget {
+class CustomPaintModifier extends SingleChildStatelessModifier {
   const CustomPaintModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.painter,
     this.foregroundPainter,
     this.size = Size.zero,
@@ -115,7 +112,6 @@ class CustomPaintModifier extends SingleChildStatelessWidget {
             (!isComplex && !willChange)),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final CustomPainter? painter;
   final CustomPainter? foregroundPainter;
   final Size size;
@@ -136,16 +132,15 @@ class CustomPaintModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ClipRectModifier extends SingleChildStatelessWidget {
+class ClipRectModifier extends SingleChildStatelessModifier {
   const ClipRectModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.clipper,
     this.clipBehavior = Clip.hardEdge,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final CustomClipper<Rect>? clipper;
   final Clip clipBehavior;
 
@@ -160,7 +155,7 @@ class ClipRectModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ClipRRectModifier extends SingleChildStatelessWidget {
+class ClipRRectModifier extends SingleChildStatelessModifier {
   const ClipRRectModifier({
     Key? key,
     Widget? child,
@@ -185,16 +180,15 @@ class ClipRRectModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ClipOvalModifier extends SingleChildStatelessWidget {
+class ClipOvalModifier extends SingleChildStatelessModifier {
   const ClipOvalModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.clipper,
     this.clipBehavior = Clip.antiAlias,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final CustomClipper<Rect>? clipper;
   final Clip clipBehavior;
 
@@ -209,11 +203,11 @@ class ClipOvalModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ClipPathModifier extends SingleChildStatelessWidget {
+class ClipPathModifier extends SingleChildStatelessModifier {
   const ClipPathModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.clipper,
     this.clipBehavior = Clip.antiAlias,
   }) : super(key: key, child: child);
@@ -238,7 +232,6 @@ class ClipPathModifier extends SingleChildStatelessWidget {
     );
   }
 
-  final Key? modifierKey;
   final CustomClipper<Path>? clipper;
   final Clip clipBehavior;
 
@@ -253,7 +246,7 @@ class ClipPathModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PhysicalModelModifier extends SingleChildStatelessWidget {
+class PhysicalModelModifier extends SingleChildStatelessModifier {
   const PhysicalModelModifier({
     Key? key,
     Widget? child,
@@ -290,11 +283,11 @@ class PhysicalModelModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PhysicalShapeModifier extends SingleChildStatelessWidget {
+class PhysicalShapeModifier extends SingleChildStatelessModifier {
   const PhysicalShapeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.clipper,
     this.clipBehavior = Clip.none,
     this.elevation = 0.0,
@@ -303,7 +296,6 @@ class PhysicalShapeModifier extends SingleChildStatelessWidget {
   })  : assert(elevation >= 0.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final CustomClipper<Path> clipper;
   final Clip clipBehavior;
   final double elevation;
@@ -324,11 +316,11 @@ class PhysicalShapeModifier extends SingleChildStatelessWidget {
   }
 }
 
-class TransformModifier extends SingleChildStatelessWidget {
+class TransformModifier extends SingleChildStatelessModifier {
   const TransformModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.transform,
     this.origin,
     this.alignment,
@@ -339,7 +331,7 @@ class TransformModifier extends SingleChildStatelessWidget {
   TransformModifier.rotate({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required double angle,
     this.origin,
     this.alignment = Alignment.center,
@@ -351,7 +343,7 @@ class TransformModifier extends SingleChildStatelessWidget {
   TransformModifier.translate({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required Offset offset,
     this.transformHitTests = true,
     this.filterQuality,
@@ -363,7 +355,7 @@ class TransformModifier extends SingleChildStatelessWidget {
   TransformModifier.scale({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     double? scale,
     double? scaleX,
     double? scaleY,
@@ -410,16 +402,10 @@ class TransformModifier extends SingleChildStatelessWidget {
     return result;
   }
 
-  final Key? modifierKey;
-
   final Matrix4 transform;
-
   final Offset? origin;
-
   final AlignmentGeometry? alignment;
-
   final bool transformHitTests;
-
   final FilterQuality? filterQuality;
 
   @override
@@ -436,7 +422,7 @@ class TransformModifier extends SingleChildStatelessWidget {
   }
 }
 
-class CompositedTransformTargetModifier extends SingleChildStatelessWidget {
+class CompositedTransformTargetModifier extends SingleChildStatelessModifier {
   const CompositedTransformTargetModifier({
     Key? key,
     Widget? child,
@@ -454,11 +440,11 @@ class CompositedTransformTargetModifier extends SingleChildStatelessWidget {
   }
 }
 
-class CompositedTransformFollowerModifier extends SingleChildStatelessWidget {
+class CompositedTransformFollowerModifier extends SingleChildStatelessModifier {
   const CompositedTransformFollowerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.link,
     this.showWhenUnlinked = true,
     this.offset = Offset.zero,
@@ -466,7 +452,6 @@ class CompositedTransformFollowerModifier extends SingleChildStatelessWidget {
     this.followerAnchor = Alignment.topLeft,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final LayerLink link;
   final bool showWhenUnlinked;
   final Alignment targetAnchor;
@@ -487,17 +472,16 @@ class CompositedTransformFollowerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FittedBoxModifier extends SingleChildStatelessWidget {
+class FittedBoxModifier extends SingleChildStatelessModifier {
   const FittedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.fit = BoxFit.contain,
     this.alignment = Alignment.center,
     this.clipBehavior = Clip.none,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final BoxFit fit;
   final AlignmentGeometry alignment;
   final Clip clipBehavior;
@@ -514,16 +498,15 @@ class FittedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FractionalTranslationModifier extends SingleChildStatelessWidget {
+class FractionalTranslationModifier extends SingleChildStatelessModifier {
   const FractionalTranslationModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.translation,
     this.transformHitTests = true,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Offset translation;
   final bool transformHitTests;
 
@@ -538,15 +521,14 @@ class FractionalTranslationModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RotatedBoxModifier extends SingleChildStatelessWidget {
+class RotatedBoxModifier extends SingleChildStatelessModifier {
   const RotatedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.quarterTurns,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final int quarterTurns;
 
   @override
@@ -559,15 +541,14 @@ class RotatedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PaddingModifier extends SingleChildStatelessWidget {
+class PaddingModifier extends SingleChildStatelessModifier {
   const PaddingModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.padding,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -580,11 +561,11 @@ class PaddingModifier extends SingleChildStatelessWidget {
   }
 }
 
-class AlignModifier extends SingleChildStatelessWidget {
+class AlignModifier extends SingleChildStatelessModifier {
   const AlignModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.alignment = Alignment.center,
     this.widthFactor,
     this.heightFactor,
@@ -592,7 +573,6 @@ class AlignModifier extends SingleChildStatelessWidget {
         assert(heightFactor == null || heightFactor >= 0.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final AlignmentGeometry alignment;
   final double? widthFactor;
   final double? heightFactor;
@@ -626,15 +606,14 @@ class CenterModifier extends AlignModifier {
         );
 }
 
-class CustomSingleChildLayoutModifier extends SingleChildStatelessWidget {
+class CustomSingleChildLayoutModifier extends SingleChildStatelessModifier {
   const CustomSingleChildLayoutModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.delegate,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final SingleChildLayoutDelegate delegate;
 
   @override
@@ -647,15 +626,14 @@ class CustomSingleChildLayoutModifier extends SingleChildStatelessWidget {
   }
 }
 
-class LayoutIdModifier extends SingleChildStatelessWidget {
+class LayoutIdModifier extends SingleChildStatelessModifier {
   const LayoutIdModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.id,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Object id;
 
   @override
@@ -669,11 +647,11 @@ class LayoutIdModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SizedBoxModifier extends SingleChildStatelessWidget {
+class SizedBoxModifier extends SingleChildStatelessModifier {
   const SizedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.width,
     this.height,
   }) : super(
@@ -684,7 +662,7 @@ class SizedBoxModifier extends SingleChildStatelessWidget {
   const SizedBoxModifier.expand({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   })  : width = double.infinity,
         height = double.infinity,
         super(key: key, child: child);
@@ -692,24 +670,23 @@ class SizedBoxModifier extends SingleChildStatelessWidget {
   const SizedBoxModifier.shrink({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   })  : width = 0.0,
         height = 0.0,
         super(key: key, child: child);
 
   SizedBoxModifier.fromSize(
-      {Key? key, Widget? child, this.modifierKey, Size? size})
+      {Key? key, Widget? child, super.modifierKey, Size? size})
       : width = size?.width,
         height = size?.height,
         super(key: key, child: child);
 
   const SizedBoxModifier.square(
-      {Key? key, Widget? child, this.modifierKey, double? dimension})
+      {Key? key, Widget? child, super.modifierKey, double? dimension})
       : width = dimension,
         height = dimension,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final double? width;
   final double? height;
 
@@ -719,16 +696,15 @@ class SizedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ConstrainedBoxModifier extends SingleChildStatelessWidget {
+class ConstrainedBoxModifier extends SingleChildStatelessModifier {
   ConstrainedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.constraints,
   })  : assert(constraints.debugAssertIsValid()),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final BoxConstraints constraints;
 
   @override
@@ -741,7 +717,7 @@ class ConstrainedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ConstraintsTransformBoxModifier extends SingleChildStatelessWidget {
+class ConstraintsTransformBoxModifier extends SingleChildStatelessModifier {
   const ConstraintsTransformBoxModifier({
     Key? key,
     Widget? child,
@@ -776,18 +752,17 @@ class ConstraintsTransformBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class UnconstrainedBoxModifier extends SingleChildStatelessWidget {
+class UnconstrainedBoxModifier extends SingleChildStatelessModifier {
   const UnconstrainedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.textDirection,
     this.alignment = Alignment.center,
     this.constrainedAxis,
     this.clipBehavior = Clip.none,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final TextDirection? textDirection;
   final AlignmentGeometry alignment;
   final Axis? constrainedAxis;
@@ -806,7 +781,7 @@ class UnconstrainedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FractionallySizedBoxModifier extends SingleChildStatelessWidget {
+class FractionallySizedBoxModifier extends SingleChildStatelessModifier {
   const FractionallySizedBoxModifier({
     Key? key,
     Widget? child,
@@ -832,18 +807,17 @@ class FractionallySizedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class LimitedBoxModifier extends SingleChildStatelessWidget {
+class LimitedBoxModifier extends SingleChildStatelessModifier {
   const LimitedBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.maxWidth = double.infinity,
     this.maxHeight = double.infinity,
   })  : assert(maxWidth >= 0.0),
         assert(maxHeight >= 0.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final double maxWidth;
   final double maxHeight;
 
@@ -858,11 +832,11 @@ class LimitedBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class OverflowBoxModifier extends SingleChildStatelessWidget {
+class OverflowBoxModifier extends SingleChildStatelessModifier {
   const OverflowBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.alignment = Alignment.center,
     this.minWidth,
     this.maxWidth,
@@ -870,7 +844,6 @@ class OverflowBoxModifier extends SingleChildStatelessWidget {
     this.maxHeight,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final AlignmentGeometry alignment;
   final double? minWidth;
   final double? maxWidth;
@@ -891,16 +864,15 @@ class OverflowBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SizedOverflowBoxModifier extends SingleChildStatelessWidget {
+class SizedOverflowBoxModifier extends SingleChildStatelessModifier {
   const SizedOverflowBoxModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.size,
     this.alignment = Alignment.center,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final AlignmentGeometry alignment;
   final Size size;
 
@@ -915,15 +887,14 @@ class SizedOverflowBoxModifier extends SingleChildStatelessWidget {
   }
 }
 
-class OffstageModifier extends SingleChildStatelessWidget {
+class OffstageModifier extends SingleChildStatelessModifier {
   const OffstageModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.offstage = true,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool offstage;
 
   @override
@@ -936,16 +907,15 @@ class OffstageModifier extends SingleChildStatelessWidget {
   }
 }
 
-class AspectRatioModifier extends SingleChildStatelessWidget {
+class AspectRatioModifier extends SingleChildStatelessModifier {
   const AspectRatioModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.aspectRatio,
   })  : assert(aspectRatio > 0.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final double aspectRatio;
 
   @override
@@ -958,18 +928,17 @@ class AspectRatioModifier extends SingleChildStatelessWidget {
   }
 }
 
-class IntrinsicWidthModifier extends SingleChildStatelessWidget {
+class IntrinsicWidthModifier extends SingleChildStatelessModifier {
   const IntrinsicWidthModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.stepWidth,
     this.stepHeight,
   })  : assert(stepWidth == null || stepWidth >= 0.0),
         assert(stepHeight == null || stepHeight >= 0.0),
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final double? stepWidth;
   final double? stepHeight;
 
@@ -984,14 +953,15 @@ class IntrinsicWidthModifier extends SingleChildStatelessWidget {
   }
 }
 
-class IntrinsicHeightModifier extends SingleChildStatelessWidget {
+class IntrinsicHeightModifier extends SingleChildStatelessModifier {
   const IntrinsicHeightModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -1002,16 +972,15 @@ class IntrinsicHeightModifier extends SingleChildStatelessWidget {
   }
 }
 
-class BaselineModifier extends SingleChildStatelessWidget {
+class BaselineModifier extends SingleChildStatelessModifier {
   const BaselineModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.baseline,
     required this.baselineType,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final double baseline;
   final TextBaseline baselineType;
 
@@ -1026,14 +995,15 @@ class BaselineModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverToBoxAdapterModifier extends SingleChildStatelessWidget {
+class SliverToBoxAdapterModifier extends SingleChildStatelessModifier {
   const SliverToBoxAdapterModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -1041,15 +1011,14 @@ class SliverToBoxAdapterModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverPaddingModifier extends SingleChildStatelessWidget {
+class SliverPaddingModifier extends SingleChildStatelessModifier {
   const SliverPaddingModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.padding,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -1061,7 +1030,7 @@ class SliverPaddingModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PositionedModifier extends SingleChildStatelessWidget {
+class PositionedModifier extends SingleChildStatelessModifier {
   const PositionedModifier({
     Key? key,
     Widget? child,
@@ -1168,11 +1137,11 @@ class PositionedModifier extends SingleChildStatelessWidget {
   }
 }
 
-class PositionedDirectionalModifier extends SingleChildStatelessWidget {
+class PositionedDirectionalModifier extends SingleChildStatelessModifier {
   const PositionedDirectionalModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.start,
     this.top,
     this.end,
@@ -1181,7 +1150,6 @@ class PositionedDirectionalModifier extends SingleChildStatelessWidget {
     this.height,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final double? start;
   final double? top;
   final double? end;
@@ -1206,16 +1174,15 @@ class PositionedDirectionalModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FlexibleModifier extends SingleChildStatelessWidget {
+class FlexibleModifier extends SingleChildStatelessModifier {
   const FlexibleModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.flex = 1,
     this.fit = FlexFit.loose,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final int flex;
   final FlexFit fit;
 
@@ -1238,11 +1205,11 @@ class ExpandedModifier extends FlexibleModifier {
   }) : super(fit: FlexFit.tight, key: key, child: child, flex: flex ?? 1);
 }
 
-class ListenerModifier extends SingleChildStatelessWidget {
+class ListenerModifier extends SingleChildStatelessModifier {
   const ListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onPointerDown,
     this.onPointerMove,
     this.onPointerUp,
@@ -1252,7 +1219,6 @@ class ListenerModifier extends SingleChildStatelessWidget {
     this.behavior = HitTestBehavior.deferToChild,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final PointerDownEventListener? onPointerDown;
   final PointerMoveEventListener? onPointerMove;
   final PointerUpEventListener? onPointerUp;
@@ -1278,11 +1244,11 @@ class ListenerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class MouseRegionModifier extends SingleChildStatelessWidget {
+class MouseRegionModifier extends SingleChildStatelessModifier {
   const MouseRegionModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onEnter,
     this.onExit,
     this.onHover,
@@ -1291,7 +1257,6 @@ class MouseRegionModifier extends SingleChildStatelessWidget {
     this.hitTestBehavior,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final PointerEnterEventListener? onEnter;
   final PointerHoverEventListener? onHover;
   final PointerExitEventListener? onExit;
@@ -1314,14 +1279,15 @@ class MouseRegionModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RepaintBoundaryModifier extends SingleChildStatelessWidget {
+class RepaintBoundaryModifier extends SingleChildStatelessModifier {
   const RepaintBoundaryModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
+  @override
+  
 
   factory RepaintBoundaryModifier.wrap(Widget child, int childIndex) {
     final Key key = child.key != null
@@ -1345,16 +1311,15 @@ class RepaintBoundaryModifier extends SingleChildStatelessWidget {
   }
 }
 
-class IgnorePointerModifier extends SingleChildStatelessWidget {
+class IgnorePointerModifier extends SingleChildStatelessModifier {
   const IgnorePointerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.ignoring = true,
     this.ignoringSemantics,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool ignoring;
   final bool? ignoringSemantics;
 
@@ -1369,16 +1334,15 @@ class IgnorePointerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class AbsorbPointerModifier extends SingleChildStatelessWidget {
+class AbsorbPointerModifier extends SingleChildStatelessModifier {
   const AbsorbPointerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.absorbing = true,
     this.ignoringSemantics,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool absorbing;
   final bool? ignoringSemantics;
 
@@ -1393,16 +1357,15 @@ class AbsorbPointerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class MetaDataModifier extends SingleChildStatelessWidget {
+class MetaDataModifier extends SingleChildStatelessModifier {
   const MetaDataModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.metaData,
     this.behavior = HitTestBehavior.deferToChild,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final dynamic metaData;
   final HitTestBehavior behavior;
 
@@ -1417,7 +1380,7 @@ class MetaDataModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SemanticsModifier extends SingleChildStatelessWidget {
+class SemanticsModifier extends SingleChildStatelessModifier {
   SemanticsModifier({
     Key? key,
     Key? modifierKey,
@@ -1557,14 +1520,13 @@ class SemanticsModifier extends SingleChildStatelessWidget {
   const SemanticsModifier.fromProperties({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.container = false,
     this.explicitChildNodes = false,
     this.excludeSemantics = false,
     required this.properties,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final SemanticsProperties properties;
   final bool container;
   final bool explicitChildNodes;
@@ -1583,11 +1545,12 @@ class SemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class MergeSemanticsModifier extends SingleChildStatelessWidget {
-  const MergeSemanticsModifier({Key? key, Widget? child, this.modifierKey})
+class MergeSemanticsModifier extends SingleChildStatelessModifier {
+  const MergeSemanticsModifier({Key? key, Widget? child, super.modifierKey})
       : super(key: key, child: child);
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -1595,12 +1558,11 @@ class MergeSemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class BlockSemanticsModifier extends SingleChildStatelessWidget {
+class BlockSemanticsModifier extends SingleChildStatelessModifier {
   const BlockSemanticsModifier(
-      {Key? key, this.modifierKey, this.blocking = true, Widget? child})
+      {Key? key, super.modifierKey, this.blocking = true, Widget? child})
       : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool blocking;
 
   @override
@@ -1613,15 +1575,14 @@ class BlockSemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ExcludeSemanticsModifier extends SingleChildStatelessWidget {
+class ExcludeSemanticsModifier extends SingleChildStatelessModifier {
   const ExcludeSemanticsModifier({
     Key? key,
-    this.modifierKey,
+    super.modifierKey,
     this.excluding = true,
     Widget? child,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool excluding;
 
   @override
@@ -1634,15 +1595,14 @@ class ExcludeSemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class IndexedSemanticsModifier extends SingleChildStatelessWidget {
+class IndexedSemanticsModifier extends SingleChildStatelessModifier {
   const IndexedSemanticsModifier({
     Key? key,
-    this.modifierKey,
+    super.modifierKey,
     required this.index,
     Widget? child,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final int index;
 
   @override
@@ -1655,7 +1615,7 @@ class IndexedSemanticsModifier extends SingleChildStatelessWidget {
   }
 }
 
-class KeyedSubtreeModifier extends SingleChildStatelessWidget {
+class KeyedSubtreeModifier extends SingleChildStatelessModifier {
   const KeyedSubtreeModifier({
     Key? key,
     required this.child,
@@ -1694,7 +1654,7 @@ typedef SingleChildWidgetBuilder = Widget Function(
   Widget? child,
 );
 
-class BuilderModifier extends SingleChildStatelessWidget {
+class BuilderModifier extends SingleChildStatelessModifier {
   const BuilderModifier({super.key, required this.builder});
 
   final SingleChildWidgetBuilder builder;
@@ -1710,9 +1670,10 @@ typedef SingleChildStatefulWidgetBuilder = Widget Function(
   Widget? child,
 );
 
-class StatefulBuilderModifier extends SingleChildStatefulWidget {
+class StatefulBuilderModifier extends SingleChildStatefulModifier {
   const StatefulBuilderModifier({
     super.key,
+    super.modifierKey,
     required this.builder,
   });
 
@@ -1730,12 +1691,11 @@ class _StatefulBuilderModifierState extends State<StatefulBuilderModifier>
   }
 }
 
-class ColoredBoxModifier extends SingleChildStatelessWidget {
+class ColoredBoxModifier extends SingleChildStatelessModifier {
   const ColoredBoxModifier(
-      {required this.color, this.modifierKey, Widget? child, Key? key})
+      {required this.color, super.modifierKey, Widget? child, Key? key})
       : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Color color;
 
   @override

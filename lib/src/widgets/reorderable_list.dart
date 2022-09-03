@@ -1,16 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class ReorderableDragStartListenerModifier extends SingleChildStatelessWidget {
+class ReorderableDragStartListenerModifier
+    extends SingleChildStatelessModifier {
   const ReorderableDragStartListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.index,
     this.enabled = true,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final int index;
   final bool enabled;
 
@@ -26,16 +26,15 @@ class ReorderableDragStartListenerModifier extends SingleChildStatelessWidget {
 }
 
 class ReorderableDelayedDragStartListenerModifier
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const ReorderableDelayedDragStartListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.index,
     this.enabled = true,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final int index;
   final bool enabled;
 

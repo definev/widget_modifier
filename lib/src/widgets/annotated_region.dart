@@ -1,8 +1,8 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 class AnnotatedRegionModifier<T extends Object>
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const AnnotatedRegionModifier({
     Key? key,
     this.modifiedKey,

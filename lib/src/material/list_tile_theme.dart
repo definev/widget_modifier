@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ListTileThemeModifier extends SingleChildStatelessWidget {
+class ListTileThemeModifier extends SingleChildStatelessModifier {
   const ListTileThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.data,
     this.dense,
     this.shape,
@@ -23,7 +23,6 @@ class ListTileThemeModifier extends SingleChildStatelessWidget {
     this.minLeadingWidth,
   });
 
-  final Key? modifierKey;
   final ListTileThemeData? data;
   final bool? dense;
   final ShapeBorder? shape;

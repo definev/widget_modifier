@@ -1,22 +1,21 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class HeroControllerScopeModifier extends SingleChildStatelessWidget {
+class HeroControllerScopeModifier extends SingleChildStatelessModifier {
   const HeroControllerScopeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.controller,
   }) : super(key: key, child: child);
 
   const HeroControllerScopeModifier.none({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   })  : controller = null,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final HeroController? controller;
 
   @override

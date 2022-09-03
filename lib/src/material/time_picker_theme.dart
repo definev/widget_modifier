@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class TimePickerThemeModifier extends SingleChildStatelessWidget {
+class TimePickerThemeModifier extends SingleChildStatelessModifier {
   const TimePickerThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final TimePickerThemeData data;
 
   @override

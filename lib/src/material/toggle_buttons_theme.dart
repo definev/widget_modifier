@@ -1,19 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ToggleButtonsThemeModifier extends SingleChildStatelessWidget {
-  /// Creates a toggle buttons theme that controls the color and border
-  /// parameters for [ToggleButtons].
-  ///
-  /// The data argument must not be null.
+class ToggleButtonsThemeModifier extends SingleChildStatelessModifier {
   const ToggleButtonsThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final ToggleButtonsThemeData data;
 
   @override

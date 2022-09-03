@@ -1,17 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class FocusTraversalGroupModifier extends SingleChildStatelessWidget {
+class FocusTraversalGroupModifier extends SingleChildStatelessModifier {
   FocusTraversalGroupModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     FocusTraversalPolicy? policy,
     this.descendantsAreFocusable = true,
     this.descendantsAreTraversable = true,
   }) : policy = policy ?? ReadingOrderTraversalPolicy();
 
-  final Key? modifierKey;
   final FocusTraversalPolicy policy;
   final bool descendantsAreFocusable;
   final bool descendantsAreTraversable;
@@ -28,15 +27,14 @@ class FocusTraversalGroupModifier extends SingleChildStatelessWidget {
   }
 }
 
-class FocusTraversalOrderModifier extends SingleChildStatelessWidget {
+class FocusTraversalOrderModifier extends SingleChildStatelessModifier {
   const FocusTraversalOrderModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.order,
   });
 
-  final Key? modifierKey;
   final FocusOrder order;
 
   @override
@@ -49,15 +47,14 @@ class FocusTraversalOrderModifier extends SingleChildStatelessWidget {
   }
 }
 
-class ExcludeFocusTraversalModifier extends SingleChildStatelessWidget {
+class ExcludeFocusTraversalModifier extends SingleChildStatelessModifier {
   const ExcludeFocusTraversalModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.excluding = true,
   });
 
-  final Key? modifierKey;
   final bool excluding;
 
   @override

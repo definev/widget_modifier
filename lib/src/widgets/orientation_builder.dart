@@ -1,5 +1,5 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 typedef OrientationModifierBuilder = Widget Function(
   BuildContext context,
@@ -7,15 +7,14 @@ typedef OrientationModifierBuilder = Widget Function(
   Widget? child,
 );
 
-class OrientationBuilderModifier extends SingleChildStatelessWidget {
+class OrientationBuilderModifier extends SingleChildStatelessModifier {
   const OrientationBuilderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.builder,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final OrientationModifierBuilder builder;
 
   @override

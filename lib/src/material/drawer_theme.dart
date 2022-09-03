@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class DrawerThemeModifier extends SingleChildStatelessWidget {
+class DrawerThemeModifier extends SingleChildStatelessModifier {
   const DrawerThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final DrawerThemeData data;
 
   @override

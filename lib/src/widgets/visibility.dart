@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class VisibilityModifier extends SingleChildStatelessWidget {
+class VisibilityModifier extends SingleChildStatelessModifier {
   const VisibilityModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.replacement = const SizedBox.shrink(),
     this.visible = true,
     this.maintainState = false,
@@ -15,7 +15,6 @@ class VisibilityModifier extends SingleChildStatelessWidget {
     this.maintainInteractivity = false,
   }) : super(key: key);
 
-  final Key? modifierKey;
   final Widget replacement;
   final bool visible;
   final bool maintainState;
@@ -40,11 +39,11 @@ class VisibilityModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverVisibilityModifier extends SingleChildStatelessWidget {
+class SliverVisibilityModifier extends SingleChildStatelessModifier {
   const SliverVisibilityModifier({
     Key? key,
     Widget? sliver,
-    this.modifierKey,
+    super.modifierKey,
     this.replacementSliver = const SliverToBoxAdapter(),
     this.visible = true,
     this.maintainState = false,
@@ -54,7 +53,6 @@ class SliverVisibilityModifier extends SingleChildStatelessWidget {
     this.maintainInteractivity = false,
   }) : super(key: key, child: sliver);
 
-  final Key? modifierKey;
   final Widget replacementSliver;
   final bool visible;
   final bool maintainState;

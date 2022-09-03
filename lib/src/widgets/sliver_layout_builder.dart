@@ -1,6 +1,6 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 typedef SliverLayoutWidgetModifierBuilder = Widget Function(
   BuildContext context,
@@ -8,15 +8,14 @@ typedef SliverLayoutWidgetModifierBuilder = Widget Function(
   Widget? child,
 );
 
-class SliverLayoutBuilderModifier extends SingleChildStatelessWidget {
+class SliverLayoutBuilderModifier extends SingleChildStatelessModifier {
   const SliverLayoutBuilderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.builder,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final SliverLayoutWidgetModifierBuilder builder;
 
   @override

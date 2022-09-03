@@ -1,17 +1,16 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class DefaultTabControllerModifier extends SingleChildStatelessWidget {
+class DefaultTabControllerModifier extends SingleChildStatelessModifier {
   const DefaultTabControllerModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.length,
     this.initialIndex = 0,
     this.animationDuration,
   });
 
-  final Key? modifierKey;
   final int length;
   final int initialIndex;
   final Duration? animationDuration;

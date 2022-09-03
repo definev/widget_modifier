@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class MaterialModifier extends SingleChildStatelessWidget {
+class MaterialModifier extends SingleChildStatelessModifier {
   const MaterialModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.type = MaterialType.canvas,
     this.elevation = 0.0,
     this.color,
@@ -19,7 +19,6 @@ class MaterialModifier extends SingleChildStatelessWidget {
     this.animationDuration = kThemeChangeDuration,
   });
 
-  final Key? modifierKey;
   final MaterialType type;
   final double elevation;
   final Color? color;

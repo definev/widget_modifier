@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class PopupMenuItemModifier<T> extends SingleChildStatelessWidget {
+class PopupMenuItemModifier<T> extends SingleChildStatelessModifier {
   const PopupMenuItemModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.value,
     this.onTap,
     this.enabled = true,
@@ -15,7 +15,6 @@ class PopupMenuItemModifier<T> extends SingleChildStatelessWidget {
     this.mouseCursor,
   });
 
-  final Key? modifierKey;
   final T? value;
   final VoidCallback? onTap;
   final bool enabled;
@@ -70,11 +69,11 @@ class CheckedPopupMenuItemModifier<T> extends PopupMenuItemModifier<T> {
   }
 }
 
-class PopupMenuButtonModifier<T> extends SingleChildStatelessWidget {
+class PopupMenuButtonModifier<T> extends SingleChildStatelessModifier {
   const PopupMenuButtonModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.itemBuilder,
     this.initialValue,
     this.onSelected,
@@ -94,7 +93,6 @@ class PopupMenuButtonModifier<T> extends SingleChildStatelessWidget {
     this.position = PopupMenuPosition.over,
   });
 
-  final Key? modifierKey;
   final PopupMenuItemBuilder<T> itemBuilder;
   final T? initialValue;
   final PopupMenuItemSelected<T>? onSelected;

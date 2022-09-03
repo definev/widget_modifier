@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class IconThemeModifier extends SingleChildStatelessWidget {
+class IconThemeModifier extends SingleChildStatelessModifier {
   const IconThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final IconThemeData data;
 
   @override

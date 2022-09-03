@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class RestorationScopeModifier extends SingleChildStatelessWidget {
+class RestorationScopeModifier extends SingleChildStatelessModifier {
   const RestorationScopeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.restorationId,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final String? restorationId;
 
   @override
@@ -22,15 +21,14 @@ class RestorationScopeModifier extends SingleChildStatelessWidget {
   }
 }
 
-class UnmanagedRestorationScopeModifier extends SingleChildStatelessWidget {
+class UnmanagedRestorationScopeModifier extends SingleChildStatelessModifier {
   const UnmanagedRestorationScopeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.bucket,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final RestorationBucket? bucket;
 
   @override
@@ -43,15 +41,14 @@ class UnmanagedRestorationScopeModifier extends SingleChildStatelessWidget {
   }
 }
 
-class RootRestorationScopeModifier extends SingleChildStatelessWidget {
+class RootRestorationScopeModifier extends SingleChildStatelessModifier {
   const RootRestorationScopeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.restorationId,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final String? restorationId;
 
   @override

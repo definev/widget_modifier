@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class MaterialBannerModifier extends SingleChildStatelessWidget {
+class MaterialBannerModifier extends SingleChildStatelessModifier {
   const MaterialBannerModifier({
     Key? key,
     Widget? content,
-    this.modifierKey,
+    super.modifierKey,
     this.contentTextStyle,
     required this.actions,
     this.elevation,
@@ -19,7 +19,6 @@ class MaterialBannerModifier extends SingleChildStatelessWidget {
     this.onVisible,
   }) : super(key: key, child: content);
 
-  final Key? modifierKey;
   final TextStyle? contentTextStyle;
   final List<Widget> actions;
   final double? elevation;

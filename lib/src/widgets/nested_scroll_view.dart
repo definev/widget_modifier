@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class NestedScrollViewModifier extends SingleChildStatelessWidget {
+class NestedScrollViewModifier extends SingleChildStatelessModifier {
   const NestedScrollViewModifier({
     Key? key,
-    this.modifierKey,
+    super.modifierKey,
     this.controller,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
@@ -19,7 +19,6 @@ class NestedScrollViewModifier extends SingleChildStatelessWidget {
     this.scrollBehavior,
   }) : super(key: key, child: body);
 
-  final Key? modifierKey;
   final ScrollController? controller;
   final Axis scrollDirection;
   final bool reverse;
@@ -51,15 +50,14 @@ class NestedScrollViewModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverOverlapAbsorberModifier extends SingleChildStatelessWidget {
+class SliverOverlapAbsorberModifier extends SingleChildStatelessModifier {
   const SliverOverlapAbsorberModifier({
     Key? key,
     Widget? sliver,
-    this.modifierKey,
+    super.modifierKey,
     required this.handle,
   }) : super(key: key, child: sliver);
 
-  final Key? modifierKey;
   final SliverOverlapAbsorberHandle handle;
 
   @override
@@ -72,15 +70,14 @@ class SliverOverlapAbsorberModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverOverlapInjectorModifier extends SingleChildStatelessWidget {
+class SliverOverlapInjectorModifier extends SingleChildStatelessModifier {
   const SliverOverlapInjectorModifier({
     Key? key,
     Widget? sliver,
-    this.modifierKey,
+    super.modifierKey,
     required this.handle,
   }) : super(key: key, child: sliver);
 
-  final Key? modifierKey;
   final SliverOverlapAbsorberHandle handle;
 
   @override

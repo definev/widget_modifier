@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class SliderThemeModifier extends SingleChildStatelessWidget {
+class SliderThemeModifier extends SingleChildStatelessModifier {
   const SliderThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final SliderThemeData data;
 
   @override

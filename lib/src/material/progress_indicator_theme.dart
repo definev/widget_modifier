@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/material.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ProgressIndicatorThemeModifier extends SingleChildStatelessWidget {
+class ProgressIndicatorThemeModifier extends SingleChildStatelessModifier {
   const ProgressIndicatorThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final ProgressIndicatorThemeData data;
 
   @override

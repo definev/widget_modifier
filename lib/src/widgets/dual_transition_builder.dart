@@ -1,7 +1,7 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DualTransitionBuilderModifier extends SingleChildStatelessWidget {
+class DualTransitionBuilderModifier extends SingleChildStatelessModifier {
   const DualTransitionBuilderModifier({
     Key? key,
     Widget? child,

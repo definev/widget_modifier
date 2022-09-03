@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ElevatedButtonThemeModifier extends SingleChildStatelessWidget {
+class ElevatedButtonThemeModifier extends SingleChildStatelessModifier {
   const ElevatedButtonThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ElevatedButtonThemeData data;
 
   @override

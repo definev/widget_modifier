@@ -1,10 +1,10 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class InputDecoratorModifier extends SingleChildStatelessWidget {
+class InputDecoratorModifier extends SingleChildStatelessModifier {
   const InputDecoratorModifier({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     required this.decoration,
     this.baseStyle,
     this.textAlign,
@@ -15,7 +15,6 @@ class InputDecoratorModifier extends SingleChildStatelessWidget {
     this.isEmpty = false,
   });
 
-  final Key? modifierKey;
   final InputDecoration decoration;
   final TextStyle? baseStyle;
   final TextAlign? textAlign;

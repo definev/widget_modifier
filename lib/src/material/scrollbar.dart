@@ -1,13 +1,13 @@
 // ignore_for_file: deprecated_member_use_from_same_package, deprecated_member_use
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ScrollbarModifier extends SingleChildStatelessWidget {
+class ScrollbarModifier extends SingleChildStatelessModifier {
   const ScrollbarModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.controller,
     this.thumbVisibility,
     this.trackVisibility,
@@ -33,7 +33,6 @@ class ScrollbarModifier extends SingleChildStatelessWidget {
         this.hoverThickness,
   });
 
-  final Key? modifierKey;
   final ScrollController? controller;
   final bool? thumbVisibility;
   @Deprecated(

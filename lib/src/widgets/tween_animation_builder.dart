@@ -1,12 +1,12 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 class TweenAnimationBuilderModifier<T extends Object?>
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const TweenAnimationBuilderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.tween,
     required this.duration,
     this.curve = Curves.linear,
@@ -14,7 +14,6 @@ class TweenAnimationBuilderModifier<T extends Object?>
     this.onEnd,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Tween<T> tween;
   final ValueWidgetBuilder<T> builder;
   final Duration duration;

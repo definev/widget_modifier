@@ -1,12 +1,12 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class SingleChildScrollViewModifier extends SingleChildStatelessWidget {
+class SingleChildScrollViewModifier extends SingleChildStatelessModifier {
   const SingleChildScrollViewModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.padding,
@@ -19,7 +19,6 @@ class SingleChildScrollViewModifier extends SingleChildStatelessWidget {
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Axis scrollDirection;
   final bool reverse;
   final EdgeInsetsGeometry? padding;

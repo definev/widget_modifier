@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:declarative_widget_modifier/src/widgets/implicit_animations.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ThemeModifier extends SingleChildStatelessWidget {
+class ThemeModifier extends SingleChildStatelessModifier {
   const ThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final ThemeData data;
 
   @override
@@ -27,14 +26,13 @@ class AnimatedThemeModifier extends SingleChildImplicitlyAnimatedWidget {
   const AnimatedThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
     super.curve,
     super.duration = kThemeAnimationDuration,
     super.onEnd,
   });
 
-  final Key? modifierKey;
   final ThemeData data;
 
   @override

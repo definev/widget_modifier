@@ -1,5 +1,5 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 const double _kHeight = 12.0; // height of banner
 
@@ -11,11 +11,11 @@ const TextStyle _kTextStyle = TextStyle(
   height: 1.0,
 );
 
-class BannerModifier extends SingleChildStatelessWidget {
+class BannerModifier extends SingleChildStatelessModifier {
   const BannerModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.message,
     this.textDirection,
     required this.location,
@@ -24,7 +24,6 @@ class BannerModifier extends SingleChildStatelessWidget {
     this.textStyle = _kTextStyle,
   });
 
-  final Key? modifierKey;
   final String message;
   final TextDirection? textDirection;
   final BannerLocation location;
@@ -47,14 +46,15 @@ class BannerModifier extends SingleChildStatelessWidget {
   }
 }
 
-class CheckedModeBannerModifier extends SingleChildStatelessWidget {
+class CheckedModeBannerModifier extends SingleChildStatelessModifier {
   const CheckedModeBannerModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
   });
 
-  final Key? modifierKey;
+  @override
+  
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {

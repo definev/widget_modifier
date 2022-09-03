@@ -1,13 +1,14 @@
 import 'dart:ui' as ui;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 abstract class SingleChildImplicitlyAnimatedWidget
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const SingleChildImplicitlyAnimatedWidget({
     Key? key,
     Widget? child,
+    super.modifierKey,
     this.curve = Curves.linear,
     required this.duration,
     this.onEnd,
@@ -25,7 +26,7 @@ class AnimatedContainerModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     this.alignment,
     this.padding,
     this.color,
@@ -46,7 +47,6 @@ class AnimatedContainerModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final Color? color;
   final AlignmentGeometry? alignment;
   final EdgeInsetsGeometry? padding;
@@ -91,7 +91,7 @@ class AnimatedPaddingModifier extends SingleChildImplicitlyAnimatedWidget {
     required Duration duration,
     Curve curve = Curves.linear,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.padding,
   }) : super(
           key: key,
@@ -101,7 +101,6 @@ class AnimatedPaddingModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -121,7 +120,7 @@ class AnimatedAlignModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.alignment,
     this.child,
     this.heightFactor,
@@ -134,7 +133,6 @@ class AnimatedAlignModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final AlignmentGeometry alignment;
   final Widget? child;
   final double? heightFactor;
@@ -162,7 +160,7 @@ class AnimatedPositionedModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     this.left,
     this.top,
     this.right,
@@ -183,7 +181,7 @@ class AnimatedPositionedModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required Rect rect,
   })  : left = rect.left,
         top = rect.top,
@@ -199,7 +197,6 @@ class AnimatedPositionedModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final double? left;
   final double? top;
   final double? right;
@@ -233,7 +230,7 @@ class AnimatedPositionedDirectionalModifier
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     this.start,
     this.top,
     this.end,
@@ -248,7 +245,6 @@ class AnimatedPositionedDirectionalModifier
           child: child,
         );
 
-  final Key? modifierKey;
   final double? start;
   final double? top;
   final double? end;
@@ -281,7 +277,7 @@ class AnimatedScaleModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.scale,
     this.alignment = Alignment.center,
     this.filterQuality,
@@ -293,7 +289,6 @@ class AnimatedScaleModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final double scale;
   final Alignment alignment;
   final FilterQuality? filterQuality;
@@ -320,7 +315,7 @@ class AnimatedRotationModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.turns,
     this.alignment = Alignment.center,
     this.filterQuality,
@@ -332,7 +327,6 @@ class AnimatedRotationModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final double turns;
   final Alignment alignment;
   final FilterQuality? filterQuality;
@@ -359,7 +353,7 @@ class AnimatedSlideModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.offset,
   }) : super(
           key: key,
@@ -369,7 +363,6 @@ class AnimatedSlideModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final Offset offset;
 
   @override
@@ -392,7 +385,7 @@ class AnimatedOpacityModifier extends SingleChildImplicitlyAnimatedWidget {
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
   }) : super(
@@ -403,7 +396,6 @@ class AnimatedOpacityModifier extends SingleChildImplicitlyAnimatedWidget {
           child: child,
         );
 
-  final Key? modifierKey;
   final double opacity;
   final bool alwaysIncludeSemantics;
 
@@ -429,7 +421,7 @@ class SliverAnimatedOpacityModifier
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
   }) : super(
@@ -440,7 +432,6 @@ class SliverAnimatedOpacityModifier
           child: sliver,
         );
 
-  final Key? modifierKey;
   final double opacity;
   final bool alwaysIncludeSemantics;
 
@@ -465,7 +456,7 @@ class AnimatedDefaultTextStyleModifier
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.style,
     this.textAlign,
     this.softWrap = true,
@@ -481,7 +472,6 @@ class AnimatedDefaultTextStyleModifier
           child: child,
         );
 
-  final Key? modifierKey;
   final TextStyle style;
   final TextAlign? textAlign;
   final bool softWrap;
@@ -517,7 +507,7 @@ class AnimatedPhysicalModelModifier
     Curve curve = Curves.linear,
     required Duration duration,
     VoidCallback? onEnd,
-    this.modifierKey,
+    super.modifierKey,
     required this.shape,
     this.clipBehavior = Clip.none,
     this.borderRadius = BorderRadius.zero,
@@ -534,7 +524,6 @@ class AnimatedPhysicalModelModifier
           child: child,
         );
 
-  final Key? modifierKey;
   final BoxShape shape;
   final Clip clipBehavior;
   final BorderRadius borderRadius;
@@ -569,7 +558,7 @@ class AnimatedFractionallySizedBoxModifier
   const AnimatedFractionallySizedBoxModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.alignment = Alignment.center,
     this.heightFactor,
     this.widthFactor,
@@ -578,7 +567,6 @@ class AnimatedFractionallySizedBoxModifier
     super.onEnd,
   });
 
-  final Key? modifierKey;
   final double? heightFactor;
   final double? widthFactor;
   final AlignmentGeometry alignment;

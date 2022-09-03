@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class AutofillGroupModifier extends SingleChildStatelessWidget {
+class AutofillGroupModifier extends SingleChildStatelessModifier {
   const AutofillGroupModifier({
     super.key,
     required super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.onDisposeAction = AutofillContextAction.commit,
   });
 
-  final Key? modifierKey;
   final AutofillContextAction onDisposeAction;
 
   @override

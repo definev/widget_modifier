@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class InkResponseModifier extends SingleChildStatelessWidget {
+class InkResponseModifier extends SingleChildStatelessModifier {
   const InkResponseModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     this.onTap,
     this.onTapDown,
     this.onTapUp,
@@ -35,7 +35,6 @@ class InkResponseModifier extends SingleChildStatelessWidget {
     this.statesController,
   });
 
-  final Key? modifierKey;
   final GestureTapCallback? onTap;
   final GestureTapDownCallback? onTapDown;
   final GestureTapUpCallback? onTapUp;

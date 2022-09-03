@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class SemanticsDebuggerModifier extends SingleChildStatelessWidget {
+class SemanticsDebuggerModifier extends SingleChildStatelessModifier {
   const SemanticsDebuggerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.labelStyle = const TextStyle(
       color: Color(0xFF000000),
       fontSize: 10.0,
@@ -13,7 +13,6 @@ class SemanticsDebuggerModifier extends SingleChildStatelessWidget {
     ),
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final TextStyle labelStyle;
 
   @override

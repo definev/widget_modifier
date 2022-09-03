@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class FocusModifier extends SingleChildStatelessWidget {
+class FocusModifier extends SingleChildStatelessModifier {
   const FocusModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.focusNode,
     this.autofocus = false,
     this.onFocusChange,
@@ -28,7 +28,6 @@ class FocusModifier extends SingleChildStatelessWidget {
     bool includeSemantics,
   }) = _FocusWithExternalFocusNode;
 
-  final Key? modifierKey;
   final FocusNode? focusNode;
   final bool autofocus;
   final ValueChanged<bool>? onFocusChange;

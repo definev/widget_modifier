@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class MediaQueryModifier extends SingleChildStatelessWidget {
+class MediaQueryModifier extends SingleChildStatelessModifier {
   const MediaQueryModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
@@ -72,7 +72,6 @@ class MediaQueryModifier extends SingleChildStatelessWidget {
     );
   }
 
-  final Key? modifierKey;
   final MediaQueryData data;
 
   @override

@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class WillPopScopeModifier extends SingleChildStatelessWidget {
+class WillPopScopeModifier extends SingleChildStatelessModifier {
   const WillPopScopeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.onWillPop,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final WillPopCallback? onWillPop;
 
   @override

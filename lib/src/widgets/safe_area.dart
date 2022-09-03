@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class SafeAreaModifier extends SingleChildStatelessWidget {
+class SafeAreaModifier extends SingleChildStatelessModifier {
   const SafeAreaModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.left = true,
     this.top = true,
     this.right = true,
@@ -14,7 +14,6 @@ class SafeAreaModifier extends SingleChildStatelessWidget {
     this.maintainBottomViewPadding = false,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final bool left;
   final bool top;
   final bool right;
@@ -37,11 +36,11 @@ class SafeAreaModifier extends SingleChildStatelessWidget {
   }
 }
 
-class SliverSafeAreaModifier extends SingleChildStatelessWidget {
+class SliverSafeAreaModifier extends SingleChildStatelessModifier {
   const SliverSafeAreaModifier({
     Key? key,
     Widget? sliver,
-    this.modifierKey,
+    super.modifierKey,
     this.left = true,
     this.top = true,
     this.right = true,
@@ -49,7 +48,6 @@ class SliverSafeAreaModifier extends SingleChildStatelessWidget {
     this.minimum = EdgeInsets.zero,
   }) : super(key: key, child: sliver);
 
-  final Key? modifierKey;
   final bool left;
 
   final bool top;

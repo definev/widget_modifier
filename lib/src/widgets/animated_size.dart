@@ -1,10 +1,10 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class AnimatedSizeModifier extends SingleChildStatelessWidget {
+class AnimatedSizeModifier extends SingleChildStatelessModifier {
   const AnimatedSizeModifier({
     Key? key,
-    this.modifierKey,
+    super.modifierKey,
     this.child,
     this.alignment = Alignment.center,
     this.curve = Curves.linear,
@@ -16,7 +16,6 @@ class AnimatedSizeModifier extends SingleChildStatelessWidget {
     this.clipBehavior = Clip.hardEdge,
   }) : super(key: key);
 
-  final Key? modifierKey;
   final Widget? child;
   final AlignmentGeometry alignment;
   final Curve curve;

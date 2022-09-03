@@ -1,10 +1,10 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DefaultSelectionStyleModifier extends SingleChildStatelessWidget {
+class DefaultSelectionStyleModifier extends SingleChildStatelessModifier {
   const DefaultSelectionStyleModifier({
     super.key,
-    this.modifierKey,
+    super.modifierKey,
     this.cursorColor,
     this.selectionColor,
     super.child,
@@ -13,11 +13,10 @@ class DefaultSelectionStyleModifier extends SingleChildStatelessWidget {
   const DefaultSelectionStyleModifier.fallback({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
   })  : cursorColor = null,
         selectionColor = null;
 
-  final Key? modifierKey;
   final Color? cursorColor;
   final Color? selectionColor;
 

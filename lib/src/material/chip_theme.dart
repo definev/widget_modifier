@@ -1,15 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class ChipThemeModifier extends SingleChildStatelessWidget {
+class ChipThemeModifier extends SingleChildStatelessModifier {
   const ChipThemeModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final ChipThemeData data;
 
   @override

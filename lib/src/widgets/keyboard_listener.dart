@@ -1,18 +1,17 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class KeyboardListenerModifier extends SingleChildStatelessWidget {
+class KeyboardListenerModifier extends SingleChildStatelessModifier {
   const KeyboardListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     required this.focusNode,
     this.autofocus = false,
     this.includeSemantics = true,
     this.onKeyEvent,
   }) : super(key: modifierKey, child: child);
 
-  final Key? modifierKey;
   final FocusNode focusNode;
   final bool autofocus;
   final bool includeSemantics;

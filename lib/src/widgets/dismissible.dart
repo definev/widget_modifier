@@ -1,12 +1,12 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class DismissibleModifier extends SingleChildStatelessWidget {
+class DismissibleModifier extends SingleChildStatelessModifier {
   const DismissibleModifier({
     Key? key,
     Widget? child,
-    required this.modifierKey,
+    required Key modifierKey,
     this.background,
     this.secondaryBackground,
     this.confirmDismiss,
@@ -21,9 +21,8 @@ class DismissibleModifier extends SingleChildStatelessWidget {
     this.dragStartBehavior = DragStartBehavior.start,
     this.behavior = HitTestBehavior.opaque,
   })  : assert(secondaryBackground == null || background != null),
-        super(key: key, child: child);
+        super(key: key, child: child, modifierKey: modifierKey);
 
-  final Key modifierKey;
   final Widget? background;
   final Widget? secondaryBackground;
   final ConfirmDismissCallback? confirmDismiss;
@@ -41,7 +40,7 @@ class DismissibleModifier extends SingleChildStatelessWidget {
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
     return Dismissible(
-      key: modifierKey,
+      key: modifierKey!,
       background: background,
       behavior: behavior,
       confirmDismiss: confirmDismiss,

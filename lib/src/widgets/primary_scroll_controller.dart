@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class PrimaryScrollControllerModifier extends SingleChildStatelessWidget {
+class PrimaryScrollControllerModifier extends SingleChildStatelessModifier {
   const PrimaryScrollControllerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.controller,
     this.automaticallyInheritForPlatforms,
     this.scrollDirection = Axis.vertical,
@@ -14,13 +14,12 @@ class PrimaryScrollControllerModifier extends SingleChildStatelessWidget {
   const PrimaryScrollControllerModifier.none({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
   })  : automaticallyInheritForPlatforms = const <TargetPlatform>{},
         scrollDirection = null,
         controller = null,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final ScrollController? controller;
   final Axis? scrollDirection;
   final Set<TargetPlatform>? automaticallyInheritForPlatforms;

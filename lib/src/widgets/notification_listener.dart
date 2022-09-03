@@ -1,16 +1,15 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 class NotificationListenerModifier<T extends Notification>
-    extends SingleChildStatelessWidget {
+    extends SingleChildStatelessModifier {
   const NotificationListenerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.onNotification,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final NotificationListenerCallback<T>? onNotification;
 
   @override

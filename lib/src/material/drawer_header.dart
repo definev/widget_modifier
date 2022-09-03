@@ -1,11 +1,11 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class DrawerHeaderModifier extends SingleChildStatelessWidget {
+class DrawerHeaderModifier extends SingleChildStatelessModifier {
   const DrawerHeaderModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.decoration,
     this.margin = const EdgeInsets.only(bottom: 8.0),
     this.padding = const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
@@ -13,7 +13,6 @@ class DrawerHeaderModifier extends SingleChildStatelessWidget {
     this.curve = Curves.fastOutSlowIn,
   }) : super(key: key, child: child);
 
-  final Key? modifierKey;
   final Decoration? decoration;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;

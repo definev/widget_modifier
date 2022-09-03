@@ -1,16 +1,14 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
-import 'package:nested/nested.dart';
 
-class SwitchThemeModifier extends SingleChildStatelessWidget {
-  /// Constructs a switch theme that configures all descendant [Switch] widgets.
+class SwitchThemeModifier extends SingleChildStatelessModifier {
   const SwitchThemeModifier({
     super.key,
     super.child,
-    this.modifierKey,
+    super.modifierKey,
     required this.data,
   });
 
-  final Key? modifierKey;
   final SwitchThemeData data;
 
   @override

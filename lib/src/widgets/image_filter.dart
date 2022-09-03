@@ -1,9 +1,9 @@
 import 'dart:ui' as ui;
 
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
-class ImageFilterModifier extends SingleChildStatelessWidget {
+class ImageFilterModifier extends SingleChildStatelessModifier {
   const ImageFilterModifier({
     Key? key,
     Widget? child,

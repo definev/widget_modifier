@@ -1,5 +1,5 @@
+import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nested/nested.dart';
 
 import 'package:vector_math/vector_math_64.dart' show Quad;
 
@@ -7,11 +7,11 @@ typedef InteractiveViewerWidgetBuilder = Widget Function(
     BuildContext context, Quad viewport);
 
 @immutable
-class InteractiveViewerModifier extends SingleChildStatelessWidget {
+class InteractiveViewerModifier extends SingleChildStatelessModifier {
   const InteractiveViewerModifier({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.clipBehavior = Clip.hardEdge,
     this.alignPanAxis = false,
     this.boundaryMargin = EdgeInsets.zero,
@@ -31,7 +31,7 @@ class InteractiveViewerModifier extends SingleChildStatelessWidget {
   const InteractiveViewerModifier.builder({
     Key? key,
     Widget? child,
-    this.modifierKey,
+    super.modifierKey,
     this.clipBehavior = Clip.hardEdge,
     this.alignPanAxis = false,
     this.boundaryMargin = EdgeInsets.zero,
@@ -50,7 +50,6 @@ class InteractiveViewerModifier extends SingleChildStatelessWidget {
   })  : constrained = false,
         super(key: key, child: child);
 
-  final Key? modifierKey;
   final Clip clipBehavior;
   final bool alignPanAxis;
   final EdgeInsets boundaryMargin;
