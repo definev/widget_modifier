@@ -158,6 +158,7 @@
         * `Hero`
         * `HeroMode`
         * `AnimatedFractionallySizedBox`
+        * `RawScrollbar`
     * `flutter/material.dart`
         * `AboutListTile`
         * `MaterialBanner`
@@ -212,3 +213,18 @@
         * `ToggleButtonsTheme`
         * `TooltipTheme`
         * `TooltipVisibility`
+    * `flutter/cupertino.dart`
+        * `CupertinoButton`
+        * `CupertinoContextMenuAction`
+        * `CupertinoContextMenu`
+        * `CupertinoPopupSurface`
+        * `CupertinoActionSheetAction`
+        * `CupertinoDialogAction`
+        * `CupertinoFormRow`
+        * `CupertinoUserInterfaceLevel`
+        * `CupertinoPageTransition`
+        * `CupertinoFullscreenDialogTransition`
+        * `CupertinoScrollbar`
+        * `CupertinoTabView`
+        * `CupertinoTextSelectionToolbarButton`
+        * `CupertinoTheme`
