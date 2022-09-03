@@ -35,8 +35,6 @@ class InteractiveViewerModifier extends SingleChildStatelessModifier {
     this.clipBehavior = Clip.hardEdge,
     this.alignPanAxis = false,
     this.boundaryMargin = EdgeInsets.zero,
-    // These default scale values were eyeballed as reasonable limits for common
-    // use cases.
     this.maxScale = 2.5,
     this.minScale = 0.8,
     this.onInteractionEnd,
