@@ -1,3 +1,12 @@
 import { wrapWith } from "../utils";
 
-export const wrapWithModifierCommand = async () => wrapWith();
+const wrapWithModifierSnippet = (widget: string): string => {
+    return `Modifier(
+        modifiers: [
+            // TODO: Add at least one \`Modifier\`
+        ],
+        child: ${widget},
+    )`;
+}
+
+export const wrapWithModifierCommand = async () => wrapWith(wrapWithModifierSnippet);

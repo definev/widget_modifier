@@ -1,3 +1,12 @@
-import { wrapWith } from "../utils";
+import { convertTo } from "../utils";
 
-export const refactorModifierCommand = async () => wrapWith();
+// const refactorModifierSnippet = (modifiers: string[], child: string): string => {
+//     return `Modifier(
+//         modifiers: [
+//             ${modifiers.join(',')},
+//         ],
+//         child: ${child},
+//     )`;
+// }
+
+export const refactorModifierCommand = async () => convertTo();
