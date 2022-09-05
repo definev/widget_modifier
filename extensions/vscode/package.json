@@ -10,14 +10,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:declarative-widget-modifier.helloWorld"
+    "onLanguage:dart"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "declarative-widget-modifier.helloWorld",
-        "title": "Hello World"
+        "command": "extension.wrap-modifier",
+        "title": "Wrap with Modifier"
+      },
+      {
+        "command": "extension.convert-modifier",
+        "title": "Convert to Modifier"
       }
     ]
   },

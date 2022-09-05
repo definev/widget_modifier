@@ -5,16 +5,15 @@ import { refactorModifierCommand, wrapWithModifierCommand } from './commands';
 
 const DART_MODE = { language: "dart", scheme: "file" };
 
-export function activate(context: ExtensionContext) {
-	context.subscriptions.push(
-		commands.registerCommand('extension.wrap-with-modifier', wrapWithModifierCommand),
-		commands.registerCommand('extension.refactor-modifier', refactorModifierCommand),
+export function activate(_context: ExtensionContext) {
+	_context.subscriptions.push(
+		commands.registerCommand("extension.wrap-modifier", wrapWithModifierCommand),
+		commands.registerCommand("extension.convert-modifier", refactorModifierCommand),
+		languages.registerCodeActionsProvider(
+			DART_MODE,
+			new ModifierCodeActions(),
+		),
 	);
-
-	const provider = new ModifierCodeActions(context);
-	const codeAction = languages.registerCodeActionsProvider(DART_MODE, provider);
-
-	context.subscriptions.push(codeAction);
 }
 
 // this method is called when your extension is deactivated
