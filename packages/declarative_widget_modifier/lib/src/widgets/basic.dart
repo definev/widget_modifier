@@ -212,7 +212,7 @@ class ClipPathModifier extends SingleChildStatelessModifier {
     this.clipBehavior = Clip.antiAlias,
   }) : super(key: key, child: child);
 
-  static Widget shape({
+  static SingleChildModifier shape({
     Key? key,
     required ShapeBorder shape,
     Clip clipBehavior = Clip.antiAlias,

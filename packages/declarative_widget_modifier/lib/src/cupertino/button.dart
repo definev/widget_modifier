@@ -17,8 +17,6 @@ class CupertinoButtonModifier extends SingleChildStatelessModifier {
     required this.onPressed,
   })  : assert(pressedOpacity == null ||
             (pressedOpacity >= 0.0 && pressedOpacity <= 1.0)),
-        assert(disabledColor != null),
-        assert(alignment != null),
         _filled = false;
 
   /// Creates an iOS-style button with a filled background.

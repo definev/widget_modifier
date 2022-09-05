@@ -33,7 +33,7 @@ class FloatingActionButtonModifier extends SingleChildStatelessModifier {
         extendedTextStyle = null,
         super(key: key, child: child);
 
-  static Widget small({
+  static SingleChildModifier small({
     Key? key,
     Widget? child,
     Key? modifierKey,
@@ -87,7 +87,7 @@ class FloatingActionButtonModifier extends SingleChildStatelessModifier {
         child: child,
       );
 
-  static Widget large({
+  static SingleChildModifier large({
     Key? key,
     Widget? child,
     Key? modifierKey,
@@ -138,7 +138,7 @@ class FloatingActionButtonModifier extends SingleChildStatelessModifier {
         child: child,
       );
 
-  static Widget extended({
+  static SingleChildModifier extended({
     Key? key,
     Widget? icon,
     Key? modifierKey,

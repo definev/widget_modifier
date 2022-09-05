@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:declarative_widget_modifier/src/modifier.dart';
+import 'package:declarative_widget_modifier/src/widgets/basic.dart';
 import 'package:flutter/widgets.dart';
 
 class DefaultTextStyleModifier extends SingleChildStatelessModifier {
@@ -17,7 +18,7 @@ class DefaultTextStyleModifier extends SingleChildStatelessModifier {
     this.textHeightBehavior,
   }) : super(key: key, child: child);
 
-  static Widget merge({
+  static SingleChildModifier merge({
     Key? key,
     Widget? child,
     Key? modifierKey,
@@ -28,8 +29,8 @@ class DefaultTextStyleModifier extends SingleChildStatelessModifier {
     int? maxLines,
     TextWidthBasis? textWidthBasis,
   }) {
-    return Builder(
-      builder: (BuildContext context) {
+    return BuilderModifier(
+      builder: (BuildContext context, Widget? child) {
         final DefaultTextStyle parent = DefaultTextStyle.of(context);
         return DefaultTextStyleModifier(
           key: key,
