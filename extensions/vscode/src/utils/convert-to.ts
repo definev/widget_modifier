@@ -1,6 +1,6 @@
-import { chown } from "fs";
 import { commands, SnippetString, window } from "vscode";
 import { getSelectedText } from "./get-selected-text";
+
 
 type Property = { name: string, value: string };
 
@@ -8,6 +8,20 @@ const notValidChar = [',', ')'];
 
 
 class Widget {
+    constructor(
+        name: string,
+        properties: Property[],
+        key: Property | null,
+        child: Property | null,
+        builder: Property | null,
+    ) {
+        this.name = name;
+        this.properties = properties;
+        this.key = key;
+        this.child = child;
+        this.builder = builder;
+    }
+
     name: string;
     key: Property | null;
     child: Property | null;
@@ -57,7 +71,7 @@ class Widget {
             }
             if (property.name !== '') {
                 // Use `,` as a terminator to check the full expression
-                if (nextChar === ',' || nextChar === ')') {
+                if (nextChar === ',') {
                     const bracketState = this.getBracketState(termText);
 
                     if (bracketState === 0) {
@@ -68,7 +82,10 @@ class Widget {
                         continue;
                     }
                     if (bracketState < 0) {
-                        property.value = termText.trim().substring(0, termText.length - 1);
+                        property.value = termText.trim().replace('\n', '');
+                        property.value = property.value.substring(0, property.value.length + bracketState - 1);
+                        const checkBracketState = this.getBracketState(property.value);
+                        classifyProperty(property);
                         property = { name: '', value: '' };
                         termText = '';
                         continue;
@@ -103,22 +120,6 @@ class Widget {
         return totalBracket;
     }
 
-    constructor(
-        name: string,
-        properties: Property[],
-        key: Property | null,
-        child: Property | null,
-        builder: Property | null,
-    ) {
-        this.name = name;
-        this.properties = properties;
-        this.key = key;
-        this.child = child;
-        this.builder = builder;
-    }
-
-
-
     public getModifier(): string {
         return `${this.name}Modifier(
             ${this.properties.map(({ name, value }) => {
@@ -144,8 +145,8 @@ const parseRecursive = (raw: string): Widget[] => {
     while (true) {
         widget = Widget.parse(source);
         if (!widget.hasChild()) { break; }
-        source = widget.getChild() as string;
         widgets.push(widget);
+        source = widget.getChild() as string;
     }
 
     return widgets;
