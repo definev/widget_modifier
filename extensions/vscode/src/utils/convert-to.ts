@@ -1,11 +1,9 @@
 import { commands, SnippetString, window } from "vscode";
 import { getSelectedText } from "./get-selected-text";
 
-
 type Property = { name: string, value: string };
 
 const notValidChar = [',', ')'];
-
 
 class Widget {
     constructor(
@@ -23,10 +21,10 @@ class Widget {
     }
 
     name: string;
-    key: Property | null;
-    child: Property | null;
-    builder: Property | null;
-    properties: Property[];
+    private key: Property | null;
+    private child: Property | null;
+    private builder: Property | null;
+    private properties: Property[];
 
     public static parse(raw: string): Widget {
         raw = raw.trim();
@@ -40,8 +38,12 @@ class Widget {
         let property: Property = { name: '', value: '' };
 
         function classifyProperty(property: Property) {
+            if (property.name === 'key') {
+                key = property;
+                return;
+            }
             if (property.name === 'child') {
-                // Need add `,` for terminator
+                // Need to add `,` for terminator
                 property.value = property.value + ',';
                 child = property;
                 return;
@@ -72,19 +74,18 @@ class Widget {
             if (property.name !== '') {
                 // Use `,` as a terminator to check the full expression
                 if (nextChar === ',') {
+                    termText = termText.trim().replace('\n', '');
                     const bracketState = this.getBracketState(termText);
 
                     if (bracketState === 0) {
-                        property.value = termText.trim();
+                        property.value = termText;
                         classifyProperty(property);
                         property = { name: '', value: '' };
                         termText = '';
                         continue;
                     }
                     if (bracketState < 0) {
-                        property.value = termText.trim().replace('\n', '');
-                        property.value = property.value.substring(0, property.value.length + bracketState - 1);
-                        const checkBracketState = this.getBracketState(property.value);
+                        property.value = termText.substring(0, termText.length + bracketState - 1);
                         classifyProperty(property);
                         property = { name: '', value: '' };
                         termText = '';
@@ -113,8 +114,8 @@ class Widget {
         let totalBracket = 0;
 
         for (let index = 0; index < text.length; index += 1) {
-            if (text[index] === '(') { totalBracket += 1; }
-            if (text[index] === ')') { totalBracket -= 1; }
+            if (text[index] === '(' || text[index] === '{' || text[index] === '[') { totalBracket += 1; }
+            if (text[index] === ')' || text[index] === '}' || text[index] === ']') { totalBracket -= 1; }
         }
 
         return totalBracket;
@@ -122,9 +123,9 @@ class Widget {
 
     public getModifier(): string {
         return `${this.name}Modifier(
-            ${this.properties.map(({ name, value }) => {
-            return `${name}: ${value},`;
-        }).join()}
+            ${ this.key !== null ? `modifierKey: ${this.key.value}` : ''}
+            ${this.properties.map(({ name, value }) => `${name}: ${value},`).join('')}
+            ${this.builder !== null ? `builder: ${this.builder.value},` : '' }
         )`;
     }
 
@@ -154,6 +155,7 @@ const parseRecursive = (raw: string): Widget[] => {
 
 const widgetsToSnippet = (widgets: Widget[]): string => {
     const modifiers = widgets.map(w => w.getModifier()).join(',');
+    console.log(modifiers);
     const child = widgets[widgets.length - 1].getChild();
     if (child === undefined) {
         return `Modifier(
@@ -171,7 +173,7 @@ export const convertTo = async () => {
     let editor = window.activeTextEditor;
     if (!editor) { return; }
     const selection = getSelectedText(editor);
-    const widget = editor.document.getText(selection).replace("$", "\\$") + ',';
+    const widget = `${editor.document.getText(selection).replace("$", "\\$")},`;
     const widgets = parseRecursive(widget);
     const snippet = widgetsToSnippet(widgets);
     editor.insertSnippet(new SnippetString(snippet), selection);
