@@ -2,6 +2,7 @@ import { Position, Selection, TextEditor } from "vscode";
 
 const openBrackets = ['(', '{', '['];
 const closeBrackets = [')', '}', ']'];
+const terminateChar = [',', ';'];
 
 export const getCascadingSelectedText = (editor: TextEditor): Selection => {
     const emptySelection = new Selection(
@@ -53,7 +54,7 @@ export const getCascadingSelectedText = (editor: TextEditor): Selection => {
             if (openBrackets.includes(currChar)) { openBracketCount++; }
             if (closeBrackets.includes(currChar)) { openBracketCount--; }
 
-            if (currChar === ',') {
+            if (terminateChar.includes(currChar)) {
                 if (openBracketCount === 0) { break; }
                 if (openBracketCount <= 0) {
                     openBracketCount = -openBracketCount;

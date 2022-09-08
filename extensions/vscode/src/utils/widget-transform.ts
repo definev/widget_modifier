@@ -1,6 +1,9 @@
 type Property = { name: string, value: string };
 
 const notValidChar = [',', ')'];
+const openBrackets = ['(', '{', '['];
+const closeBrackets = [')', '}', ']'];
+const terminateChar = [',', ';'];
 
 class Widget {
     constructor(
@@ -70,7 +73,7 @@ class Widget {
             }
             if (property.name !== '') {
                 // Use `,` as a terminator to check the full expression
-                if (nextChar === ',') {
+                if (terminateChar.includes(nextChar)) {
                     termText = termText.trim().replace('\n', '');
                     const bracketState = this.getBracketState(termText);
 
@@ -111,8 +114,9 @@ class Widget {
         let totalBracket = 0;
 
         for (let index = 0; index < text.length; index += 1) {
-            if (text[index] === '(' || text[index] === '{' || text[index] === '[') { totalBracket += 1; }
-            if (text[index] === ')' || text[index] === '}' || text[index] === ']') { totalBracket -= 1; }
+            const currChar = text[index];
+            if (openBrackets.includes(currChar)) { totalBracket += 1; }
+            if (closeBrackets.includes(currChar)) { totalBracket -= 1; }
         }
 
         return totalBracket;
