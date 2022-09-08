@@ -5,7 +5,6 @@ import 'package:declarative_widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:nested/nested.dart';
 
 class DirectionalityModifier extends SingleChildStatelessModifier {
   const DirectionalityModifier({
