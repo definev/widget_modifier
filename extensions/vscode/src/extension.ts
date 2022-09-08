@@ -1,6 +1,6 @@
 import { commands, ExtensionContext, languages } from 'vscode';
 
-import { WidgetToModifierCodeActions } from './code-actions';
+import { ChangeModifierStyleAction, WidgetToModifierCodeActions } from './code-actions';
 import { convertToCascadingModifierCommand, convertToDeclarativeModifierCommand, wrapWithModifierCommand } from './commands';
 
 const DART_MODE = { language: "dart", scheme: "file" };
@@ -13,6 +13,10 @@ export function activate(_context: ExtensionContext) {
 		languages.registerCodeActionsProvider(
 			DART_MODE,
 			new WidgetToModifierCodeActions(),
+		),
+		languages.registerCodeActionsProvider(
+			DART_MODE,
+			new ChangeModifierStyleAction(),
 		),
 	);
 }

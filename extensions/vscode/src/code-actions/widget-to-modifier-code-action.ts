@@ -1,16 +1,12 @@
-import { CodeActionProvider, CodeAction, window, CodeActionKind, ExtensionContext } from 'vscode';
+import { CodeActionProvider, CodeAction, window, CodeActionKind, ExtensionContext, TextDocument } from 'vscode';
 import { getSelectedText } from '../utils';
 
 export class WidgetToModifierCodeActions implements CodeActionProvider {
-    public static readonly providedCodeActionKinds = [
-        CodeActionKind.Refactor
-    ];
-
-    public provideCodeActions(): CodeAction[] {
+    public provideCodeActions(document: TextDocument): CodeAction[] {
         const editor = window.activeTextEditor;
         if (!editor) { return []; }
 
-        const selectedText = editor.document.getText(getSelectedText(editor));
+        const selectedText = document.getText(getSelectedText(editor));
         if (selectedText === "") { return []; }
 
         return [

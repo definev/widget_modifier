@@ -26,6 +26,14 @@
       {
         "command": "extension.convert-to-cascading-modifier",
         "title": "Convert to cascading Modifier"
+      },
+      {
+        "command": "extension.change-to-cascading-modifier",
+        "title": "Change to cascading style"
+      },
+      {
+        "command": "extension.change-to-declarative-modifier",
+        "title": "Change to declarative style"
       }
     ]
   },
