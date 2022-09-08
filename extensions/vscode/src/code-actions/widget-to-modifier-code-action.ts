@@ -1,7 +1,7 @@
 import { CodeActionProvider, CodeAction, window, CodeActionKind, ExtensionContext } from 'vscode';
 import { getSelectedText } from '../utils';
 
-export class ModifierCodeActions implements CodeActionProvider {
+export class WidgetToModifierCodeActions implements CodeActionProvider {
     public static readonly providedCodeActionKinds = [
         CodeActionKind.Refactor
     ];
@@ -20,8 +20,13 @@ export class ModifierCodeActions implements CodeActionProvider {
                 codeActionKind: CodeActionKind.Refactor,
             },
             {
-                command: "extension.convert-modifier",
-                title: "Convert to Modifier",
+                command: "extension.convert-to-declarative-modifier",
+                title: "Convert to declarative Modifier",
+                codeActionKind: CodeActionKind.QuickFix,
+            },
+            {
+                command: "extension.convert-to-cascading-modifier",
+                title: "Convert to cascading Modifier", 
                 codeActionKind: CodeActionKind.QuickFix,
             },
         ].map((c) => {

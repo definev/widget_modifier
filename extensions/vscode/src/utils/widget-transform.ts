@@ -1,6 +1,3 @@
-import { commands, SnippetString, window } from "vscode";
-import { getSelectedText } from "./get-selected-text";
-
 type Property = { name: string, value: string };
 
 const notValidChar = [',', ')'];
@@ -123,9 +120,9 @@ class Widget {
 
     public getModifier(): string {
         return `${this.name}Modifier(
-            ${ this.key !== null ? `modifierKey: ${this.key.value}` : ''}
+            ${this.key !== null ? `modifierKey: ${this.key.value}` : ''}
             ${this.properties.map(({ name, value }) => `${name}: ${value},`).join('')}
-            ${this.builder !== null ? `builder: ${this.builder.value},` : '' }
+            ${this.builder !== null ? `builder: ${this.builder.value},` : ''}
         )`;
     }
 
@@ -138,7 +135,7 @@ class Widget {
     }
 }
 
-const parseRecursive = (raw: string): Widget[] => {
+export const parseRecursive = (raw: string): Widget[] => {
     let widgets: Widget[] = [];
     let widget: Widget | undefined;
     let source: string = raw;
@@ -153,7 +150,7 @@ const parseRecursive = (raw: string): Widget[] => {
     return widgets;
 };
 
-const widgetsToSnippet = (widgets: Widget[]): string => {
+export const widgetsToSnippet = (widgets: Widget[]): string => {
     const modifiers = widgets.map(w => w.getModifier()).join(',');
     console.log(modifiers);
     const child = widgets[widgets.length - 1].getChild();
@@ -167,15 +164,4 @@ const widgetsToSnippet = (widgets: Widget[]): string => {
         modifiers: [${modifiers}],
         child: ${child}
     )`;
-};
-
-export const convertTo = async () => {
-    let editor = window.activeTextEditor;
-    if (!editor) { return; }
-    const selection = getSelectedText(editor);
-    const widget = `${editor.document.getText(selection).replace("$", "\\$")},`;
-    const widgets = parseRecursive(widget);
-    const snippet = widgetsToSnippet(widgets);
-    editor.insertSnippet(new SnippetString(snippet), selection);
-    await commands.executeCommand("editor.action.formatDocument");
 };

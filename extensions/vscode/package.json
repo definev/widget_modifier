@@ -20,8 +20,12 @@
         "title": "Wrap with Modifier"
       },
       {
-        "command": "extension.convert-modifier",
+        "command": "extension.convert-to-declarative-modifier",
         "title": "Convert to Modifier"
+      },
+      {
+        "command": "extension.convert-to-cascading-modifier",
+        "title": "Convert to cascading Modifier"
       }
     ]
   },
