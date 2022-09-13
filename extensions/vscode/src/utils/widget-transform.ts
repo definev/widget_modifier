@@ -1,3 +1,5 @@
+import { window } from "vscode";
+
 type Property = { name: string, value: string };
 
 const notValidChar = [',', ')'];
@@ -154,7 +156,7 @@ export const parseRecursive = (raw: string): Widget[] => {
     return widgets;
 };
 
-export const widgetsToSnippet = (widgets: Widget[]): string => {
+export const widgetsToDeclarativeModifierSnippet = (widgets: Widget[]): string => {
     const modifiers = widgets.map(w => w.getModifier()).join(',');
     console.log(modifiers);
     const child = widgets[widgets.length - 1].getChild();
@@ -168,4 +170,22 @@ export const widgetsToSnippet = (widgets: Widget[]): string => {
         modifiers: [${modifiers}],
         child: ${child}
     )`;
+};
+
+
+export const widgetsToCascadingModifierSnippet = (widgets: Widget[]): string | null => {
+    const modifiers = widgets.map(w => `.add(${w.getModifier()})`).reverse().join('');
+    console.log(modifiers);
+    const child = widgets[widgets.length - 1].getChild();
+    if (child === undefined) {
+        window.showWarningMessage("Cascading widget must have at least one child");
+        return null;
+    }
+
+    let modifierChild = child.substring(0, child.length - 1);
+
+    return `${modifierChild}
+        .modified() //
+        ${modifiers}
+    `;
 };

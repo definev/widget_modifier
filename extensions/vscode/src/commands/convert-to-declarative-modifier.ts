@@ -1,5 +1,5 @@
 import { commands, SnippetString, window } from "vscode";
-import { getSelectedText, parseRecursive, widgetsToSnippet } from "../utils";
+import { getSelectedText, parseRecursive, widgetsToDeclarativeModifierSnippet } from "../utils";
 
 // const refactorModifierSnippet = (modifiers: string[], child: string): string => {
 //     return `Modifier(
@@ -20,7 +20,7 @@ export const convertToDeclarativeModifierCommand = async () => {
         window.showInformationMessage('This widget can\'t convert to Modifier');
         return;
     }
-    const snippet = widgetsToSnippet(widgets);
+    const snippet = widgetsToDeclarativeModifierSnippet(widgets);
     editor.insertSnippet(new SnippetString(snippet), selection);
     await commands.executeCommand("editor.action.formatDocument");
 };
