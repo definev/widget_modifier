@@ -5,6 +5,6 @@ export const changeToDeclarativeModifierCommand = async () => {
     let editor = window.activeTextEditor;
     if (!editor) { return; }
     const selection = getCascadingSelectedText(editor);
-    const widget = `${editor.document.getText(selection).replace("$", "\\$")},`;
+    const widget = editor.document.getText(selection).replace("$", "\\$");
     console.log(widget);
 };

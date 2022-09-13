@@ -46,30 +46,43 @@ export const getCascadingSelectedText = (editor: TextEditor): Selection => {
     let endLine = currentLine;
     let endIndex = startIndex;
 
-
+    let done = false;
     for (endLine; endLine < editor.document.lineCount; endLine++) {
-        let lineText = editor.document.lineAt(currentLine).text;
+        let lineText = editor.document.lineAt(endLine).text;
         for (endIndex; endIndex < lineText.length; endIndex++) {
             const currChar = lineText[endIndex];
             if (openBrackets.includes(currChar)) { openBracketCount++; }
             if (closeBrackets.includes(currChar)) { openBracketCount--; }
 
             if (terminateChar.includes(currChar)) {
-                if (openBracketCount === 0) { break; }
+                if (openBracketCount === 0) {
+                    done = true;
+                    endIndex = endIndex - 1;
+                    break;
+                }
                 if (openBracketCount <= 0) {
                     openBracketCount = -openBracketCount;
                     for (let charLeft = 0; charLeft < openBracketCount; charLeft++) {
                         if (endIndex === 0) {
                             endLine = endLine - 1;
-                            endIndex = editor.document.lineAt(endLine).text.length;
+                            endIndex = editor.document.lineAt(endLine).text.length - 1;
                         } else {
                             endIndex = endIndex - 1;
                         }
                     }
+                    done = true;
                     break;
                 }
             }
         }
+        if (!done) { endIndex = 0; }
+    }
+
+    if (endIndex === 0) {
+        endLine = endLine - 1;
+        endIndex = editor.document.lineAt(endLine).text.length - 1;
+    } else {
+        endIndex--;
     }
 
     let endPosition = new Position(endLine, endIndex);

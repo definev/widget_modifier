@@ -29,11 +29,11 @@
       },
       {
         "command": "extension.change-to-cascading-modifier",
-        "title": "Change to cascading style"
+        "title": "Change Modifier to cascading style"
       },
       {
         "command": "extension.change-to-declarative-modifier",
-        "title": "Change to declarative style"
+        "title": "Change Modifier to declarative style"
       }
     ]
   },

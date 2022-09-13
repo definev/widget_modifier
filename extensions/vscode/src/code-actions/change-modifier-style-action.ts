@@ -12,7 +12,7 @@ export class ChangeModifierStyleAction implements CodeActionProvider {
             return [
                 {
                     command: "extension.change-to-cascading-modifier",
-                    title: "Change to cascading style",
+                    title: "Change Modifier to cascading style",
                     codeActionKind: CodeActionKind.Refactor,
                 },
             ].map((c) => {
@@ -24,11 +24,11 @@ export class ChangeModifierStyleAction implements CodeActionProvider {
                 return action;
             });
         }
-        if (selectedText === "modified") {
+        if (selectedText === ".modified") {
             return [
                 {
                     command: "extension.change-to-declarative-modifier",
-                    title: "Change to declarative style",
+                    title: "Change Modifier to declarative style",
                     codeActionKind: CodeActionKind.Refactor,
                 },
             ].map((c) => {
