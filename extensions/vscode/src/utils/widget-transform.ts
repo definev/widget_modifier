@@ -207,7 +207,6 @@ export const parseToWidgets = (raw: string): Widget[] => {
 
 export const widgetsToDeclarativeModifierSnippet = (widgets: Widget[]): string => {
     const modifiers = widgets.map(w => w.getModifier()).join(',');
-    console.log(modifiers);
     const child = widgets[widgets.length - 1].getChild();
     if (child === undefined) {
         return `Modifier(
@@ -224,7 +223,6 @@ export const widgetsToDeclarativeModifierSnippet = (widgets: Widget[]): string =
 
 export const widgetsToCascadingModifierSnippet = (widgets: Widget[]): string | null => {
     const modifiers = widgets.map(w => `.add(${w.getModifier()})`).reverse().join('');
-    console.log(modifiers);
     const child = widgets[widgets.length - 1].getChild();
     if (child === undefined) {
         window.showWarningMessage("Cascading widget must have at least one child");
