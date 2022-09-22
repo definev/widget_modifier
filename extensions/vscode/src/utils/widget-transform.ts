@@ -13,19 +13,16 @@ class Widget {
         properties: Property[],
         key: Property | null,
         child: Property | null,
-        builder: Property | null,
     ) {
         this.name = name;
         this.properties = properties;
         this.key = key;
         this.child = child;
-        this.builder = builder;
     }
 
     name: string;
     private key: Property | null;
     private child: Property | null;
-    private builder: Property | null;
     private properties: Property[];
 
     public static parse(raw: string): Widget {
@@ -33,7 +30,6 @@ class Widget {
         let name: string = '';
         let key: Property | null = null;
         let child: Property | null = null;
-        let builder: Property | null = null;
         let properties: Property[] = [];
 
         let termText: string = '';
@@ -48,10 +44,6 @@ class Widget {
                 // Need to add `,` for terminator
                 property.value = property.value + ',';
                 child = property;
-                return;
-            }
-            if (property.name === 'builder') {
-                builder = property;
                 return;
             }
 
@@ -109,7 +101,7 @@ class Widget {
             }
         }
 
-        return new Widget(name, properties, key, child, builder);
+        return new Widget(name, properties, key, child);
     }
 
     public static getBracketState(text: string): number {
@@ -128,7 +120,6 @@ class Widget {
         return `${this.name}Modifier(
             ${this.key !== null ? `modifierKey: ${this.key.value}` : ''}
             ${this.properties.map(({ name, value }) => `${name}: ${value},`).join('')}
-            ${this.builder !== null ? `builder: ${this.builder.value},` : ''}
         )`;
     }
 
@@ -139,9 +130,68 @@ class Widget {
     public hasChild() {
         return this.child !== null;
     }
+
+    public isModifier(): boolean {
+        return this.name === "Modifier";
+    }
+
+    public changeWidgetToCascadingStyle(): string {
+        let modifierIndex = this //
+            .properties //
+            .findIndex((val) => val.name === 'modifiers');
+
+        if (modifierIndex === -1) { return ''; }
+
+        let modifier = this.properties[modifierIndex];
+        let raw = modifier.value.trim().substring(1, modifier.value.length - 1).trim();
+        if (raw[raw.length - 1] !== ',') {
+            raw += ',';
+        }
+        let index = 0;
+        let modifierList: String[] = [];
+        let currentModifier = "";
+        let bracketCount = 0;
+
+        while (index < raw.length) {
+            const currChar = raw[index];
+            if (terminateChar.includes(currChar)) {
+                // TODO: Check currentModifier and parse
+                if (bracketCount < 0) {
+                    currentModifier = currentModifier.substring(0, currentModifier.length + bracketCount - 1);
+                    raw.substring(currentModifier.length);
+                    modifierList.push(currentModifier);
+                    currentModifier = '';
+                    index++;
+                    continue;
+                }
+                if (bracketCount === 0) {
+                    raw.substring(currentModifier.length);
+                    modifierList.push(currentModifier);
+                    currentModifier = '';
+                    index++;
+                    continue;
+                }
+            }
+            currentModifier += currChar;
+            if (openBrackets.includes(currChar)) { bracketCount++; }
+            if (closeBrackets.includes(currChar)) { bracketCount--; }
+            index++;
+        }
+
+        modifierList = modifierList.reverse();
+
+        return `
+         ${this.child !== null ? this.child!.value.substring(0, this.child!.value.length - 1) : ""}
+        .modified()
+        ${modifierList.map(m => `.add(${m})`).join("")}
+        `;
+    }
 }
 
-export const parseRecursive = (raw: string): Widget[] => {
+
+
+
+export const parseToWidgets = (raw: string): Widget[] => {
     let widgets: Widget[] = [];
     let widget: Widget | undefined;
     let source: string = raw;
