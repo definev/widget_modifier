@@ -1,6 +1,6 @@
 import { window } from "vscode";
 
-type Property = { name: string, value: string };
+export type Property = { name: string, value: string };
 
 const notValidChar = [',', ')'];
 const openBrackets = ['(', '{', '['];
@@ -155,7 +155,6 @@ class Widget {
         while (index < raw.length) {
             const currChar = raw[index];
             if (terminateChar.includes(currChar)) {
-                // TODO: Check currentModifier and parse
                 if (bracketCount < 0) {
                     currentModifier = currentModifier.substring(0, currentModifier.length + bracketCount - 1);
                     raw.substring(currentModifier.length);

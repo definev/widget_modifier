@@ -1,8 +1,11 @@
 import { Position, Selection, TextEditor } from "vscode";
 
-const openBrackets = ['(', '{', '['];
-const closeBrackets = [')', '}', ']'];
-const terminateChar = [',', ';'];
+const getPotentialFirstPosition = (editor: TextEditor, position: Position): Position => {
+    if (position.character === 0) {
+        return new Position(position.line - 1, editor.document.lineAt(position.line - 1).text.length - 1);
+    }
+    return new Position(position.line, position.character - 1);
+};
 
 export const getCascadingSelectedText = (editor: TextEditor): Selection => {
     const emptySelection = new Selection(
@@ -14,78 +17,51 @@ export const getCascadingSelectedText = (editor: TextEditor): Selection => {
 
     const line = editor.document.lineAt(editor.selection.start);
     const lineText = line.text;
-    let openBracketIndex = Number.MAX_VALUE;
-    for (let openBracket in openBrackets) {
-        let bracket = line.text.indexOf(
-            openBracket,
-            editor.selection.anchor.character
-        );
-        if (bracket < openBracketIndex) {
-            openBracketIndex = bracket;
+    let founded = false;
+    let lastPosition = new Position(editor.selection.start.line, 0);
+
+    for (let index = editor.selection.start.character; index >= 0; index--) {
+        if (founded) {
+            lastPosition = new Position(editor.selection.start.line, index);;
+            break;
+        }
+        const currChar = lineText[index];
+        if (currChar === ".") {
+            founded = true;
         }
     }
 
-    let widgetStartIndex = openBracketIndex > 1
-        ? openBracketIndex - 1
-        : editor.selection.anchor.character;
-    for (widgetStartIndex; widgetStartIndex > 0; widgetStartIndex--) {
-        const currentChar = lineText.charAt(widgetStartIndex);
-        const isBeginningOfWidget =
-            openBrackets.includes(currentChar) ||
-            (currentChar === " " && lineText.charAt(widgetStartIndex - 1) !== ",");
-        if (isBeginningOfWidget) { break; }
-    }
-    widgetStartIndex++;
-
-    let currentLine = editor.selection.start.line;
-    let startIndex = widgetStartIndex;
-
-    let startPosition = new Position(currentLine, startIndex);
-    let openBracketCount = 0;
-
-    let endLine = currentLine;
-    let endIndex = startIndex;
-
+    let firstPosition = lastPosition;
     let done = false;
-    for (endLine; endLine < editor.document.lineCount; endLine++) {
-        let lineText = editor.document.lineAt(endLine).text;
-        for (endIndex; endIndex < lineText.length; endIndex++) {
-            const currChar = lineText[endIndex];
-            if (openBrackets.includes(currChar)) { openBracketCount++; }
-            if (closeBrackets.includes(currChar)) { openBracketCount--; }
+    while (!done) {
+        firstPosition = getPotentialFirstPosition(editor, firstPosition);
+        let currChar = editor.document.lineAt(firstPosition.line).text[firstPosition.character];
+        if (currChar === '(') {
+            const text = editor.document.getText(
+                new Selection(firstPosition, lastPosition),
+            );
+            let bracketCount = 0;
+            for (let index = 0; index < text.length; index++) {
+                const textCurrChar = text[index];
+                if (textCurrChar === '(') { bracketCount -= 1; }
+                if (textCurrChar === ')') { bracketCount += 1; }
+            }
 
-            if (terminateChar.includes(currChar)) {
-                if (openBracketCount === 0) {
-                    done = true;
-                    endIndex = endIndex - 1;
-                    break;
-                }
-                if (openBracketCount <= 0) {
-                    openBracketCount = -openBracketCount;
-                    for (let charLeft = 0; charLeft < openBracketCount; charLeft++) {
-                        if (endIndex === 0) {
-                            endLine = endLine - 1;
-                            endIndex = editor.document.lineAt(endLine).text.length - 1;
-                        } else {
-                            endIndex = endIndex - 1;
-                        }
+            if (bracketCount === 0) {
+                let firstLineText = editor.document.lineAt(firstPosition.line).text;
+                for (let firstLineIndex = firstPosition.character; firstLineIndex >= 0; firstLineIndex--) {
+                    if (firstLineText[firstLineIndex] === ' ') {
+                        firstPosition = new Position(firstPosition.line, firstLineIndex + 1);
+                        done = true;
+                        break;
                     }
-                    done = true;
-                    break;
                 }
             }
+            if (firstPosition === new Position(0, 0)) {
+                break;
+            }
         }
-        if (!done) { endIndex = 0; }
     }
 
-    if (endIndex === 0) {
-        endLine = endLine - 1;
-        endIndex = editor.document.lineAt(endLine).text.length - 1;
-    } else {
-        endIndex--;
-    }
-
-    let endPosition = new Position(endLine, endIndex);
-
-    return new Selection(startPosition, endPosition);
+    return new Selection(firstPosition, lastPosition);
 };
