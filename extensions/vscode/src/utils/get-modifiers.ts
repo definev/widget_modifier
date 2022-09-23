@@ -89,5 +89,5 @@ export const getModifiers = (editor: TextEditor): Property[] => {
         }
     }
 
-    return modifiers;
+    return modifiers.reverse();
 };
