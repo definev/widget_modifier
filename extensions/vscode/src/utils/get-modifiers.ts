@@ -3,7 +3,7 @@ import { Property } from "./widget-transform";
 
 const terminateChar = [',', ';'];
 
-export const getModifiersSelection = (editor: TextEditor): Selection => {
+export const getModifiersSelectedText = (editor: TextEditor): Selection => {
     let lineText = editor.document.lineAt(editor.selection.start.line).text;
     let startAt = editor.selection.start.character;
     while (true) {
@@ -11,7 +11,6 @@ export const getModifiersSelection = (editor: TextEditor): Selection => {
     }
 
     let firstPosition = new Position(editor.selection.start.line, startAt);
-    let lastPosition = firstPosition;
     let limitLine = editor.document.lineCount - 1;
     let limitCharacter = editor.document.lineAt(editor.document.lineCount - 1).text.length;
 
@@ -23,9 +22,12 @@ export const getModifiersSelection = (editor: TextEditor): Selection => {
     if (startAt === lineText.length) {
         firstPosition = new Position(editor.selection.start.line + 1, 0);
     }
+    let lastPosition = firstPosition;
+
     while (lastPosition.isBefore(limitPosition)) {
         const lineText = editor.document.lineAt(lastPosition.line).text;
-        if (terminateChar.includes(lineText[lastPosition.character])) {
+        const lastChar = lineText[lastPosition.character];
+        if (terminateChar.includes(lastChar)) {
             const text = editor.document.getText(
                 new Selection(firstPosition, lastPosition),
             );
@@ -36,17 +38,11 @@ export const getModifiersSelection = (editor: TextEditor): Selection => {
                 if (text[index] === ')') { bracketCount -= 1; }
             }
 
-            if (bracketCount === 0) {
+            if (bracketCount <= 0) {
+                const lastOffset = editor.document.offsetAt(lastPosition) + bracketCount;
                 return new Selection(
                     firstPosition,
-                    new Position(
-                        lastPosition.character === 0
-                            ? lastPosition.line - 1
-                            : lastPosition.line,
-                        lastPosition.character === 0
-                            ? editor.document.lineAt(lastPosition.line - 1).text.length - 1
-                            : lastPosition.character - 1,
-                    ),
+                    editor.document.positionAt(lastOffset),
                 );
             }
         }
@@ -60,31 +56,36 @@ export const getModifiersSelection = (editor: TextEditor): Selection => {
     return new Selection(editor.document.positionAt(0), editor.document.positionAt(0));
 };
 
-const getModifiersRawText = (editor: TextEditor): string => {
-    let result = editor.document.getText(getModifiersSelection(editor));
-    console.log(result);
-    return result;
+const parseModifier = (raw: string): Property => {
+    let modifierPropertyNameIndex = raw.indexOf('(');
+    let modifierPropertyName = raw.substring(0, modifierPropertyNameIndex);
+    let modifierPropertyValue = raw.substring(modifierPropertyNameIndex + 1, raw.length - 1);
+
+    return { name: modifierPropertyName.trim(), value: modifierPropertyValue.trim() };
 };
 
 export const getModifiers = (editor: TextEditor): Property[] => {
     let modifiers: Property[] = [];
 
-    let raw = getModifiersRawText(editor);
+    const modifierSelection = getModifiersSelectedText(editor);
+    const raw = editor.document.getText(modifierSelection);
+    let modifiableRaw = raw.trim();
+    console.log(raw);
+    let offset = -1;
 
-    let modifiersRaw = raw.split(".add");
-    // Remove first empty property
-    modifiers.shift();
+    let bracketCount = 0;
+    for (let index = 0; index < raw.length; index++) {
+        offset++;
+        let currChar = raw[index];
+        if (currChar === '(') { bracketCount += 1; }
+        if (currChar === ')') { bracketCount -= 1; }
 
-    for (let index = 0; index < modifiersRaw.length; index++) {
-        let modifierStr = modifiersRaw[index];
-        let modifyFuncIndex = modifierStr.indexOf('(');
-        let modifyFunc = modifierStr.substring(0, modifyFuncIndex - 1);
-        if (modifyFunc === 'add') {
-            modifierStr = modifierStr.substring(4, modifierStr.length);
-            let modifierPropertyNameIndex = modifierStr.indexOf('(');
-            let modifierPropertyName = modifierStr.substring(0, modifierPropertyNameIndex);
-            let modifierPropertyValue = modifierStr.substring(modifierPropertyNameIndex, modifierStr.length - 1);
-            modifiers.push({ name: modifierPropertyName, value: modifierPropertyValue });
+        if (currChar === ')' && bracketCount === 0) {
+            let modifierStr = modifiableRaw.substring(0, offset + 1).trim();
+            modifiableRaw = modifiableRaw.substring(offset + 1).trim();
+            modifierStr = modifierStr.substring(modifierStr.indexOf('(') + 1, modifierStr.length - 1);
+            modifiers.push(parseModifier(modifierStr.trim()));
+            offset = -1;
         }
     }
 
