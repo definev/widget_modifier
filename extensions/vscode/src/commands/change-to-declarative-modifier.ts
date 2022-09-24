@@ -23,4 +23,6 @@ export const changeToDeclarativeModifierCommand = async () => {
         ),
     );
     await commands.executeCommand("editor.action.formatDocument");
+    editor.selection = new Selection(childSelection.start, childSelection.start);
+    editor.revealRange(editor.document.lineAt(childSelection.start.line).range);
 };

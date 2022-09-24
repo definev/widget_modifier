@@ -1,4 +1,4 @@
-import { commands, SnippetString, window } from "vscode";
+import { commands, Selection, SnippetString, window } from "vscode";
 import { getSelectedText, parseToWidgets, widgetsToDeclarativeModifierSnippet } from "../utils";
 
 // const refactorModifierSnippet = (modifiers: string[], child: string): string => {
@@ -23,4 +23,6 @@ export const convertToDeclarativeModifierCommand = async () => {
     const snippet = widgetsToDeclarativeModifierSnippet(widgets);
     editor.insertSnippet(new SnippetString(snippet), selection);
     await commands.executeCommand("editor.action.formatDocument");
+    editor.selection = new Selection(selection.start, selection.start);
+    editor.revealRange(editor.document.lineAt(selection.start.line).range);
 };

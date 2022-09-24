@@ -179,11 +179,9 @@ class Widget {
 
         modifierList = modifierList.reverse();
 
-        return `
-         ${this.child !== null ? this.child!.value.substring(0, this.child!.value.length - 1) : ""}
+        return `${this.child !== null ? this.child!.value.substring(0, this.child!.value.length - 1) : ""}
         .modified()
-        ${modifierList.map(m => `.add(${m})`).join("")}
-        `;
+        ${modifierList.map(m => `.add(${m})`).join("")}`;
     }
 }
 

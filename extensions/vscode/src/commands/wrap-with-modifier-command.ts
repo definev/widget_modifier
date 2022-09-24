@@ -7,6 +7,6 @@ const wrapWithModifierSnippet = (widget: string): string => {
         ],
         child: ${widget},
     )`;
-}
+};
 
 export const wrapWithModifierCommand = async () => wrapWith(wrapWithModifierSnippet);

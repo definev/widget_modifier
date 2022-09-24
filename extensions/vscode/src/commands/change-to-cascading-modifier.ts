@@ -1,4 +1,4 @@
-import { commands, SnippetString, window } from "vscode";
+import { commands, Selection, SnippetString, window } from "vscode";
 import { getSelectedText, parseToWidgets } from "../utils";
 
 export const changeToCascadingModifierCommand = async () => {
@@ -8,7 +8,13 @@ export const changeToCascadingModifierCommand = async () => {
     const widget = `${editor.document.getText(selection).replace("$", "\\$")},`;
     const widgets = parseToWidgets(widget);
     const cascadingStyle = widgets[0].changeWidgetToCascadingStyle();
-
-    editor.insertSnippet(new SnippetString(cascadingStyle), selection);
+    const newOffset = editor.document.offsetAt(selection.start) + widgets[0].getChild()!.length;
+    await editor.insertSnippet(new SnippetString(cascadingStyle), selection);
+    const newSelection = new Selection(
+        editor.document.positionAt(newOffset),
+        editor.document.positionAt(newOffset),
+    );
+    editor.selection = newSelection;
     await commands.executeCommand("editor.action.formatDocument");
+    editor.revealRange(editor.document.lineAt(editor.selection.start.line).range);
 };
