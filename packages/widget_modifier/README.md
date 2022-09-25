@@ -140,7 +140,7 @@ Cons:
 
 ## Custom modifier
 
-If you want to make a custom modifier check out `SingleChildStatelessModifier`/`SingleChildStatefulModifier` equalvalents version `StatelessWidget`/`StatefulWidget`
+If you want to make a custom modifier check out `SingleChildStatelessModifier`/`SingleChildStatefulModifier` equivalents version `StatelessWidget`/`StatefulWidget`
 
 #### Caution
 ⚠️ You need to override `buildWithChild` instead of `build` method
