@@ -7,6 +7,8 @@
 
 A collection of built-in flutter widget modifiers, which flatten the widget tree and make it easier to read.
 
+Credit: Original idea and the `widget_modifier` base code is a modified version of [`nested`](https://pub.dev/packages/nested) widget by [@remi_rousselet](https://github.com/rrousselGit)
+
 ---
 
 ## Problem
