@@ -214,7 +214,7 @@ class ClipPathModifier extends SingleChildStatelessModifier {
     required ShapeBorder shape,
     Clip clipBehavior = Clip.antiAlias,
   }) {
-    return SingleChildBuilder(
+    return BuilderModifier(
       key: key,
       builder: (BuildContext context, Widget? child) {
         return ClipPath(

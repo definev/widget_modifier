@@ -350,27 +350,6 @@ class SingleChildStatefulElement extends StatefulElement with SingleChildWidgetE
   }
 }
 
-/// A [SingleChildModifier] that delegates its implementation to a callback.
-///
-/// It works like [Builder], but is compatible with [Modifier].
-class SingleChildBuilder extends SingleChildStatelessModifier {
-  /// Creates a widget that delegates its build to a callback.
-  ///
-  /// The [builder] argument must not be null.
-  const SingleChildBuilder({Key? key, required this.builder, Widget? child}) : super(key: key, child: child);
-
-  /// Called to obtain the child widget.
-  ///
-  /// The `child` parameter may be different from the one parameter passed to
-  /// the constructor of [SingleChildBuilder].
-  final Widget Function(BuildContext context, Widget? child) builder;
-
-  @override
-  Widget buildWithChild(BuildContext context, Widget? child) {
-    return builder(context, child);
-  }
-}
-
 mixin SingleChildStatelessWidgetMixin implements StatelessWidget, SingleChildStatelessModifier {
   Widget? get child;
 

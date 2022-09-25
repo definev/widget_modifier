@@ -1,6 +1,7 @@
-## 0.0.1
+## 1.0.0
 
 * Initial release
+* Start support from flutter stable 3.3.0
 * Support built-in widget from `flutter`
     * `flutter/widgets.dart`
         * `Opacity`
