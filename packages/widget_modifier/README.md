@@ -98,7 +98,8 @@ The declarative modifier will apply from the bottom element to the top element o
 
 Pros:
 - Easy to detect where the root `child` widget
-- Follow composition
+- Nice code format
+- Work well with editor code folding
 
 Cons:
 - Counter-intuitive at first
@@ -135,7 +136,7 @@ The cascading modifier will apply from the top `add`/`addAll` element to the bot
 #### Pros & Cons
 Pros:
 - Easy to detect where the root `child` widget
-- Intuitive
+- Intuitive to read
 
 Cons:
 - Code format is sometimes ugly
