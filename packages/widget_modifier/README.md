@@ -1,20 +1,9 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
 <p align="center">
-<img src="assets/icon.png" alt="logo" width="100" />
+<img src="assets/banner.png" alt="logo" width="300" />
 </p>
 
-# Widget modifier
 
 A collection of built-in flutter widget modifiers, which flatten the widget tree and make it easier to read.
 
@@ -39,9 +28,9 @@ AspectRatio(
   ),
 )
 ```
-This is a typical flutter widget. With **four** nested widgets, the code is pretty hard to read. Your eyes need to skim to `Padding`, `AspectRatio`, `DecoratedBox`, and `Padding` to reach out to the actual child widget. This process is unesscessary and consumes your brain's power to do.
+This is a typical flutter widget. With **four** nested widgets, the code is pretty hard to read. Your eyes need to skim to `Padding`, `AspectRatio`, `DecoratedBox`, and `Padding` to reach out to the actual child widget. This process is unnecessary and consumes your brain's power to do.
 
-Of course, no one in real-world do this. Instead of, we uses a big friendly (or maybe not) guy - `Container`. The previous widget becomes this
+Of course, no one in the real world does this. Instead, we use a big friendly (or maybe not) guy - `Container`. The previous widget becomes this.
 
 ```dart
 AspectRatio(
@@ -58,15 +47,16 @@ AspectRatio(
 )
 ```
 
-But why we still have `AspectRatio` widget? Because `Container` doesn't have `aspectRatio` field. It's mean `Container` not flexible to provide all kind of configuraiton you needs.
+But why do we still have `AspectRatio` widget? Because `Container` doesn't have `aspectRatio` field. It means `Container` is not flexible to provide all kinds of configurations you need.
 
-To fix this `widget_modifier` introduces a new set of APIs to "flatten" your widget.
+To fix this, `widget_modifier` introduces a new set of APIs to "flatten" your widget.
+
 
 ## Usage
 
 Widget modifier have two API styles: `declarative` and `cascading`
 
-#### Declarative
+### Declarative
 
 Declarative modifier version of the above example widget
 
@@ -95,13 +85,14 @@ Modifier(
 ```
 
 
-- `modifiers`: a `List<SingleChildModifier>` basically the wrapper for typical `Widget` which have one child
+- `modifiers`: a `List<SingleChildModifier>` basically the wrapper for a typical `Widget` which has one child
 - `child`: child of `Modifer`
 
 
-Declarative modifier will apply from bottom element to top element of the `modifiers` list 
 
-##### Pros & Cons
+The declarative modifier will apply from the bottom element to the top element of the `modifiers` list. 
+
+#### Pros & Cons
 
 Pros:
 - Easy to detect where the root `child` widget
@@ -110,7 +101,7 @@ Pros:
 Cons:
 - Counter-intuitive at first
 
-#### Cascading
+### Cascading
 Cascading modifier version of the above example widget
 
 ```dart
@@ -137,16 +128,26 @@ Row()
 - `add()`: insert `SingleChildModifier` to the beginning of the `modifiers` list
 - `addAll()`: insert `List<SingleChildModifier>` to the beginning of the `modifiers` list
 
-Cascading modifier will apply from top `add`/`addAll` element to bottom. 
+The cascading modifier will apply from the top `add`/`addAll` element to the bottom.
 
-## Custom
+#### Pros & Cons
+Pros:
+- Easy to detect where the root `child` widget
+- Intuitive
+
+Cons:
+- Code format is sometimes ugly
+
+## Custom modifier
 
 If you want to make a custom modifier check out `SingleChildStatelessModifier`/`SingleChildStatefulModifier` equalvalents version `StatelessWidget`/`StatefulWidget`
 
 #### Caution
-⚠️ You need to override `buildWithChild` insteads of `build` method
-⚠️ `buildWithChild` like `build` but have another `child` parameter which is the widget `Modifier` give to `SingleChildModifer`
-⚠️ `modifierKey` is the key of actual widget inside modifier
+⚠️ You need to override `buildWithChild` instead of `build` method
+
+⚠️ `buildWithChild` is like `build` but has another `child` parameter which is the widget `Modifier` given to `SingleChildModifer`
+
+⚠️ `modifierKey` is the key of the actual widget inside the modifier
 
 ### SingleChildStatelessModifier
 ```dart
