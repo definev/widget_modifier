@@ -1,4 +1,4 @@
-## 1.0.0
+## 0.0.1
 
 * Initial release
 * Start support from flutter stable 3.3.0
