@@ -8,7 +8,8 @@ export class WidgetToModifierCodeActions implements CodeActionProvider {
         if (!editor) { return []; }
 
         const title = getTitleText(editor);
-        if (title === 'Modifier' || title === 'modified') { return []; }
+        if (title === '') { return []; }
+        if (title === 'Modifier' || title[0] === '.') { return []; }
 
         const selectedText = document.getText(getSelectedText(editor));
         if (selectedText === "") { return []; }

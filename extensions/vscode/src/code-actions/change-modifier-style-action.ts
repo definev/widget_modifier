@@ -13,7 +13,7 @@ export class ChangeModifierStyleAction implements CodeActionProvider {
                 {
                     command: "extension.change-to-cascading-modifier",
                     title: "Change Modifier to cascading style",
-                    codeActionKind: CodeActionKind.Refactor,
+                    codeActionKind: CodeActionKind.QuickFix,
                 },
             ].map((c) => {
                 let action = new CodeAction(c.title, c.codeActionKind);
@@ -29,7 +29,7 @@ export class ChangeModifierStyleAction implements CodeActionProvider {
                 {
                     command: "extension.change-to-declarative-modifier",
                     title: "Change Modifier to declarative style",
-                    codeActionKind: CodeActionKind.Refactor,
+                    codeActionKind: CodeActionKind.QuickFix,
                 },
             ].map((c) => {
                 let action = new CodeAction(c.title, c.codeActionKind);

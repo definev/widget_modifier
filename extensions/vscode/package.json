@@ -3,6 +3,7 @@
   "displayName": "declarative_widget_modifier",
   "description": "A code actions for declarative_widget_modifier package",
   "version": "0.0.1",
+  "publisher": "definev",
   "engines": {
     "vscode": "^1.71.0"
   },

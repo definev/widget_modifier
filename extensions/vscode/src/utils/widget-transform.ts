@@ -181,7 +181,7 @@ class Widget {
 
         return `${this.child !== null ? this.child!.value.substring(0, this.child!.value.length - 1) : ""}
         .modified()
-        ${modifierList.map(m => `.add(${m})`).join("")}`;
+        ${modifierList.map(m => `.wrapWith(${m})`).join("")}`;
     }
 }
 
@@ -220,7 +220,7 @@ export const widgetsToDeclarativeModifierSnippet = (widgets: Widget[]): string =
 
 
 export const widgetsToCascadingModifierSnippet = (widgets: Widget[]): string | null => {
-    const modifiers = widgets.map(w => `.add(${w.getModifier()})`).reverse().join('');
+    const modifiers = widgets.map(w => `.wrapWith(${w.getModifier()})`).reverse().join('');
     const child = widgets[widgets.length - 1].getChild();
     if (child === undefined) {
         window.showWarningMessage("Cascading widget must have at least one child");
@@ -231,6 +231,5 @@ export const widgetsToCascadingModifierSnippet = (widgets: Widget[]): string | n
 
     return `${modifierChild}
         .modified() //
-        ${modifiers}
-    `;
+        ${modifiers}`;
 };
