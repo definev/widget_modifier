@@ -110,28 +110,28 @@ Cascading modifier version of the above example widget
 ```dart
 Row()
   .modified()
-  .add(PaddingModifier(
+  .wrapWith(PaddingModifier(
     padding: const EdgeInsets.all(20),
   ))
-  .add(DecoratedBoxModifier(
+  .wrapWith(DecoratedBoxModifier(
     decoration: BoxDecoration(
       color: const Color(0xFFe1e4e3),
       borderRadius: BorderRadius.circular(20),
     ),
   ))
-  .add(PaddingModifier(
+  .wrapWith(PaddingModifier(
     padding: const EdgeInsets.symmetric(horizontal: 20),
   ))
-  .add(AspectRatioModifier(
+  .wrapWith(AspectRatioModifier(
     aspectRatio: 16 / 8,
   ))
 ```
 
 - `modified()`: extenstion turn your widget to `Modifier`
-- `add()`: insert `SingleChildModifier` to the beginning of the `modifiers` list
-- `addAll()`: insert `List<SingleChildModifier>` to the beginning of the `modifiers` list
+- `wrapWith()`: insert `SingleChildModifier` to the beginning of the `modifiers` list
+- `wrapWithAll()`: insert `List<SingleChildModifier>` to the beginning of the `modifiers` list
 
-The cascading modifier will apply from the top `add`/`addAll` element to the bottom.
+The cascading modifier will apply from the top `wrapWith`/`wrapWithAll` element to the bottom.
 
 #### Pros & Cons
 Pros:
@@ -201,3 +201,6 @@ class _StatefulBuilderModifierState extends State<StatefulBuilderModifier>
   }
 }
 ```
+## Editor support
+
+Current

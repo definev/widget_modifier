@@ -79,13 +79,13 @@ class Modifier extends StatelessWidget with ModifierManager implements SingleChi
   final Widget? _child;
 
   @override
-  Modifier add(SingleChildModifier modifier) {
+  Modifier wrapWith(SingleChildModifier modifier) {
     _modifiers.insert(0, modifier);
     return this;
   }
 
   @override
-  Modifier addAll(List<SingleChildModifier> modifiers) {
+  Modifier wrapWithAll(List<SingleChildModifier> modifiers) {
     _modifiers.insertAll(0, modifiers);
     return this;
   }
@@ -420,11 +420,11 @@ extension ModifierTransformer on Widget {
 }
 
 mixin ModifierManager {
-  Modifier add(SingleChildModifier modifier) {
+  Modifier wrapWith(SingleChildModifier modifier) {
     throw UnimplementedError('Missing implement');
   }
 
-  Modifier addAll(List<SingleChildModifier> modifiers) {
+  Modifier wrapWithAll(List<SingleChildModifier> modifiers) {
     throw UnimplementedError('Missing implement');
   }
 }
