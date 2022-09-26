@@ -1,7 +1,7 @@
 
 
 <p align="center">
-<img src="assets/banner.png" alt="logo" width="300" />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/packages/widget_modifier/assets/banner.png" alt="logo" width="300" />
 </p>
 
 
