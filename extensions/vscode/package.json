@@ -8,6 +8,10 @@
   "engines": {
     "vscode": "^1.71.0"
   },
+  "repository": {
+    "url": "https://github.com/definev/widget_modifier",
+    "directory": "extensions/vscode"
+  },
   "categories": [
     "Snippets",
     "Linters"
