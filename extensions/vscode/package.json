@@ -1,6 +1,7 @@
 {
-  "name": "declarative-widget-modifier",
-  "displayName": "declarative_widget_modifier",
+  "name": "flutter-widget-modifier",
+  "displayName": "Flutter widget modifier",
+  "icon": "https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/icon.png",
   "description": "A code actions for declarative_widget_modifier package",
   "version": "0.0.1",
   "publisher": "definev",
@@ -8,7 +9,8 @@
     "vscode": "^1.71.0"
   },
   "categories": [
-    "Other"
+    "Snippets",
+    "Linters"
   ],
   "activationEvents": [
     "onLanguage:dart"

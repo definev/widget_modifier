@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/banner.png" width="300" />
+    <img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/banner.png" width="300" />
 </p>
 
 A collection of snippets, quick fix of `widget_modifier` package
@@ -8,26 +8,26 @@ A collection of snippets, quick fix of `widget_modifier` package
 
 `Wrap with Modifier`: Wrap current widget with `Modifier` widget
 
-<img src="assets/wrap-with-modifier.gif" width=650 />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/wrap-with-modifier.gif" width=650 />
 
 ---
 
 `Convert to declarative modifier`: Convert normal widget to declarative `Modifier` widget
 
-<img src="assets/convert-to-declarative.gif" width=650 />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/convert-to-declarative.gif" width=650 />
 
 ---
 
 `Convert to cascading modifier`: Convert normal widget to cascading `Modifier` widget
 
-<img src="assets/convert-to-cascading.gif" width=650 />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/convert-to-cascading.gif" width=650 />
 
 ---
 
 `Change Modifier to declarative style`: Change cascading style modifier to 
 declarative style
 
-<img src="assets/change-to-declarative.gif" width=650 />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/change-to-declarative.gif" width=650 />
 
 ---
 
@@ -35,4 +35,4 @@ declarative style
 `Change Modifier to cascading style`: Change declarative style modifier to 
 cascading style
 
-<img src="assets/convert-to-cascading.gif" width=650 />
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/convert-to-cascading.gif" width=650 />
