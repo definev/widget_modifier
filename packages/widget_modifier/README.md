@@ -203,4 +203,8 @@ class _StatefulBuilderModifierState extends State<StatefulBuilderModifier>
 ```
 ## Editor support
 
-Current
+You can easily convert existing widget to `Modifier` with my extension. See more at:
+
+- [vscode](https://marketplace.visualstudio.com/items?itemName=definev.flutter-widget-modifier)
+
+<img src="https://raw.githubusercontent.com/definev/widget_modifier/main/extensions/vscode/assets/convert-to-declarative.gif" width=650 />
