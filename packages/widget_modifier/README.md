@@ -88,7 +88,7 @@ Modifier(
 
 
 - `modifiers`: a `List<SingleChildModifier>` basically the wrapper for a typical `Widget` which has one child
-- `child`: child of `Modifer`
+- `child`: child of `Modifier`
 
 
 
@@ -148,7 +148,7 @@ If you want to make a custom modifier check out `SingleChildStatelessModifier`/`
 #### Caution
 ⚠️ You need to override `buildWithChild` instead of `build` method
 
-⚠️ `buildWithChild` is like `build` but has another `child` parameter which is the widget `Modifier` given to `SingleChildModifer`
+⚠️ `buildWithChild` is like `build` but has another `child` parameter which is the widget `Modifier` given to `SingleChildModifier`
 
 ⚠️ `modifierKey` is the key of the actual widget inside the modifier
 
