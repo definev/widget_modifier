@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_const_constructors_in_immutables
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// Original idea and source code by @remi_rousselet
 ///
@@ -68,12 +68,11 @@ import 'package:flutter/material.dart';
 class Modifier extends StatelessWidget with ModifierManager implements SingleChildModifier {
   /// Allows configuring key, children and child
   Modifier({
-    Key? key,
+    super.key,
     required List<SingleChildModifier> modifiers,
     Widget? child,
   })  : _modifiers = modifiers,
-        _child = child,
-        super(key: key);
+        _child = child;
 
   final List<SingleChildModifier> _modifiers;
   final Widget? _child;
@@ -95,24 +94,25 @@ class Modifier extends StatelessWidget with ModifierManager implements SingleChi
     throw StateError('implemented internally');
   }
 
+  /// Create modifier stateless element
   @override
   _ModifierElement createElement() => _ModifierElement(this);
 }
 
-class _ModifierElement extends StatelessElement with SingleChildWidgetElementMixin {
-  _ModifierElement(Modifier widget) : super(widget);
+class _ModifierElement extends StatelessElement with _SingleChildWidgetElementMixin {
+  _ModifierElement(Modifier super.widget);
 
   @override
   Modifier get widget => super.widget as Modifier;
 
-  final nodes = <_ModifierHookElement>{};
+  final Set<_ModifierHookElement> nodes = <_ModifierHookElement>{};
 
   @override
   Widget build() {
     _ModifierHook? modifierHook;
-    var nextNode = _parent?.injectedChild ?? widget._child;
+    Widget? nextNode = _parent?.injectedChild ?? widget._child;
 
-    for (final child in widget._modifiers.reversed) {
+    for (final SingleChildModifier child in widget._modifiers.reversed) {
       nextNode = modifierHook = _ModifierHook(
         owner: this,
         wrappedModifier: child,
@@ -124,12 +124,12 @@ class _ModifierElement extends StatelessElement with SingleChildWidgetElementMix
       // We manually update _ModifierHookElement instead of letter widgets do their thing
       // because an item N may be constant but N+1 not. So, if we used widgets
       // then N+1 wouldn't rebuild because N didn't change
-      for (final node in nodes) {
+      for (final _ModifierHookElement node in nodes) {
         node
           ..wrappedChild = modifierHook!.wrappedModifier
           ..injectedChild = modifierHook.injectedModifier;
 
-        final next = modifierHook.injectedModifier;
+        final Widget? next = modifierHook.injectedModifier;
         if (next is _ModifierHook) {
           modifierHook = next;
         } else {
@@ -161,7 +161,7 @@ class _ModifierHook extends StatelessWidget {
 }
 
 class _ModifierHookElement extends StatelessElement {
-  _ModifierHookElement(_ModifierHook widget) : super(widget);
+  _ModifierHookElement(_ModifierHook super.widget);
 
   @override
   _ModifierHook get widget => super.widget as _ModifierHook;
@@ -169,7 +169,7 @@ class _ModifierHookElement extends StatelessElement {
   Widget? _injectedModifier;
   Widget? get injectedChild => _injectedModifier;
   set injectedChild(Widget? value) {
-    final previous = _injectedModifier;
+    final Widget? previous = _injectedModifier;
     if (value is _ModifierHook &&
         previous is _ModifierHook &&
         Widget.canUpdate(value.wrappedModifier, previous.wrappedModifier)) {
@@ -179,7 +179,7 @@ class _ModifierHookElement extends StatelessElement {
     }
     if (previous != value) {
       _injectedModifier = value;
-      visitChildren((e) => e.markNeedsBuild());
+      visitChildren((Element e) => e.markNeedsBuild());
     }
   }
 
@@ -219,12 +219,13 @@ class _ModifierHookElement extends StatelessElement {
 /// See also:
 /// - [SingleChildStatelessModifier]
 /// - [SingleChildStatefulModifier]
+// ignore: avoid_implementing_value_types
 abstract class SingleChildModifier implements Widget {
   @override
-  SingleChildWidgetElementMixin createElement();
+  _SingleChildWidgetElementMixin createElement();
 }
 
-mixin SingleChildWidgetElementMixin on Element {
+mixin _SingleChildWidgetElementMixin on Element {
   _ModifierHookElement? _parent;
 
   @override
@@ -238,7 +239,7 @@ mixin SingleChildWidgetElementMixin on Element {
   @override
   void activate() {
     super.activate();
-    visitAncestorElements((parent) {
+    visitAncestorElements((Element parent) {
       if (parent is _ModifierHookElement) {
         _parent = parent;
       }
@@ -254,12 +255,18 @@ mixin SingleChildWidgetElementMixin on Element {
 abstract class SingleChildStatelessModifier extends StatelessWidget implements SingleChildModifier {
   /// Creates a widget that has exactly one child widget.
   const SingleChildStatelessModifier({
-    Key? key,
+    super.key,
     Widget? child,
     this.modifierKey,
-  })  : _child = child,
-        super(key: key);
+  }) : _child = child;
 
+  /// {@template widget_modifier.modifierKey}
+  /// The actual key of the widget, which [Modifier] wrapped
+  ///
+  /// Because flutter [key] property is the default for the widget so don't miss-used
+  /// - [key] which is modifier key
+  /// - [modifierKey] which is the key of widget in [buildWithChild]
+  /// {@endtemplate}
   final Key? modifierKey;
   final Widget? _child;
 
@@ -274,6 +281,7 @@ abstract class SingleChildStatelessModifier extends StatelessWidget implements S
   @override
   Widget build(BuildContext context) => buildWithChild(context, _child);
 
+  /// Create a SingleChildStatelessElement
   @override
   SingleChildStatelessElement createElement() {
     return SingleChildStatelessElement(this);
@@ -281,9 +289,9 @@ abstract class SingleChildStatelessModifier extends StatelessWidget implements S
 }
 
 /// An [Element] that uses a [SingleChildStatelessModifier] as its configuration.
-class SingleChildStatelessElement extends StatelessElement with SingleChildWidgetElementMixin {
+class SingleChildStatelessElement extends StatelessElement with _SingleChildWidgetElementMixin {
   /// Creates an element that uses the given widget as its configuration.
-  SingleChildStatelessElement(SingleChildStatelessModifier widget) : super(widget);
+  SingleChildStatelessElement(SingleChildStatelessModifier super.widget);
 
   @override
   Widget build() {
@@ -300,13 +308,13 @@ class SingleChildStatelessElement extends StatelessElement with SingleChildWidge
 /// A [StatefulWidget] that is compatible with [Modifier].
 abstract class SingleChildStatefulModifier extends StatefulWidget implements SingleChildModifier {
   /// Creates a widget that has exactly one child widget.
-  const SingleChildStatefulModifier({Key? key, Widget? child, this.modifierKey})
-      : _child = child,
-        super(key: key);
+  const SingleChildStatefulModifier({super.key, Widget? child, this.modifierKey}) : _child = child;
 
+  /// {@macro widget_modifier.modifierKey}
   final Key? modifierKey;
   final Widget? _child;
 
+  /// Create element SingleChildStatefulElement
   @override
   SingleChildStatefulElement createElement() {
     return SingleChildStatefulElement(this);
@@ -330,9 +338,9 @@ abstract class SingleChildState<T extends SingleChildStatefulModifier> extends S
 }
 
 /// An [Element] that uses a [SingleChildStatefulModifier] as its configuration.
-class SingleChildStatefulElement extends StatefulElement with SingleChildWidgetElementMixin {
+class SingleChildStatefulElement extends StatefulElement with _SingleChildWidgetElementMixin {
   /// Creates an element that uses the given widget as its configuration.
-  SingleChildStatefulElement(SingleChildStatefulModifier widget) : super(widget);
+  SingleChildStatefulElement(SingleChildStatefulModifier super.widget);
 
   @override
   SingleChildStatefulModifier get widget => super.widget as SingleChildStatefulModifier;
@@ -344,13 +352,15 @@ class SingleChildStatefulElement extends StatefulElement with SingleChildWidgetE
   @override
   Widget build() {
     if (_parent != null) {
-      return state.buildWithChild(this, _parent!.injectedChild!);
+      return state.buildWithChild(this, _parent!.injectedChild);
     }
     return super.build();
   }
 }
 
+/// Mix [StatelessWidget] with [SingleChildStatelessModifier]
 mixin SingleChildStatelessWidgetMixin implements StatelessWidget, SingleChildStatelessModifier {
+  /// The child widget which [Modifier] give to [SingleChildModifier]
   Widget? get child;
 
   @override
@@ -367,14 +377,21 @@ mixin SingleChildStatelessWidgetMixin implements StatelessWidget, SingleChildSta
   }
 }
 
+/// Mix [StatefulWidget] with [SingleChildStatelessModifier]
 mixin SingleChildStatefulWidgetMixin on StatefulWidget implements SingleChildModifier {
+  /// The child widget which [Modifier] give to [SingleChildModifier]
   Widget? get child;
 
+  /// Create a custom element
   @override
   _SingleChildStatefulMixinElement createElement() => _SingleChildStatefulMixinElement(this);
 }
 
+/// This enable [State] class can use with [Modifier]
+///
+/// Remember override [buildWithChild] not default [build] function
 mixin SingleChildStateMixin<T extends StatefulWidget> on State<T> {
+  /// Create widget with [child] is given by [Modifier]
   Widget buildWithChild(BuildContext context, Widget child);
 
   @override
@@ -386,8 +403,8 @@ mixin SingleChildStateMixin<T extends StatefulWidget> on State<T> {
   }
 }
 
-class _SingleChildStatefulMixinElement extends StatefulElement with SingleChildWidgetElementMixin {
-  _SingleChildStatefulMixinElement(SingleChildStatefulWidgetMixin widget) : super(widget);
+class _SingleChildStatefulMixinElement extends StatefulElement with _SingleChildWidgetElementMixin {
+  _SingleChildStatefulMixinElement(SingleChildStatefulWidgetMixin super.widget);
 
   @override
   SingleChildStatefulWidgetMixin get widget => super.widget as SingleChildStatefulWidgetMixin;
@@ -404,7 +421,8 @@ class _SingleChildStatefulMixinElement extends StatefulElement with SingleChildW
   }
 }
 
-mixin SingleChildInheritedElementMixin on InheritedElement, SingleChildWidgetElementMixin {
+///
+mixin SingleChildInheritedElementMixin on InheritedElement, _SingleChildWidgetElementMixin {
   @override
   Widget build() {
     if (_parent != null) {
@@ -414,16 +432,21 @@ mixin SingleChildInheritedElementMixin on InheritedElement, SingleChildWidgetEle
   }
 }
 
+/// Transform normal widget to [Modifier]
 extension ModifierTransformer on Widget {
+  /// Transform normal widget to [Modifier]
   // ignore: prefer_const_literals_to_create_immutables
-  Modifier modified() => Modifier(modifiers: [], child: this);
+  Modifier modified() => Modifier(modifiers: <SingleChildModifier>[], child: this);
 }
 
+/// Mixin help control [SingleChildModifier] list
 mixin ModifierManager {
+  /// Wrap current [child] widget with a [SingleChildModifier]
   Modifier wrapWith(SingleChildModifier modifier) {
     throw UnimplementedError('Missing implement');
   }
 
+  /// Wrap current [child] widget with a [SingleChildModifier]s list
   Modifier wrapWithAll(List<SingleChildModifier> modifiers) {
     throw UnimplementedError('Missing implement');
   }

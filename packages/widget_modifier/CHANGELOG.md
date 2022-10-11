@@ -1,3 +1,30 @@
+## 0.1.0
+* Update full documentation 🎉
+* Remove: 
+    * `IconButtonModifier`, `NestedScrollView`, `SliverOverlapAbsorber`, `SliverOverlapInjector`
+* New modifier:
+    * `flutter/cupertino.dart`
+        * `CupertinoPageScaffold`
+    * `flutter/material.dart`
+        * `MaterialBannerTheme` 
+    * `flutter/widgets.dart`
+        * `Listener` add `onPointerPanZoomEnd`,
+    `onPointerPanZoomStart`, `onPointerPanZoomUpdate`
+        * `PlatformMenuBar`
+        * `ScrollConfiguration`
+        * `ScrollNotificationObserver`
+        * `AnimatedSwitcher`
+        * `PreferredSize`
+        * `RawScrollbar`
+        * `SelectableRegion`
+        * `SelectionContainer`
+        * `Shortcuts`
+        * `SliverOpacity`
+        * `SliverIgnorePointer`
+        * `SliverOffstage`
+        * `SliverFillRemaining`
+        * `TextSelectionGestureDetector`
+
 ## 0.0.2
 
 * Fix broken icon

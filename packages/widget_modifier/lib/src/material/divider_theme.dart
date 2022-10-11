@@ -1,14 +1,23 @@
-import 'package:widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
 
+import '../modifier.dart';
+
+/// An inherited widget that defines the configuration for
+/// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
+/// between rows in [DataTable]s in this widget's subtree.
 class DividerThemeModifier extends SingleChildStatelessModifier {
+  /// Creates a divider theme that controls the configurations for
+  /// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
+  /// between rows in [DataTable]s in its widget subtree.
   const DividerThemeModifier({
-    Key? key,
-    Widget? child,
+    super.key,
+    super.child,
     super.modifierKey,
     required this.data,
-  }) : super(key: key, child: child);
+  });
 
+  /// The properties for descendant [Divider]s, [VerticalDivider]s, dividers
+  /// between [ListTile]s, and dividers between rows in [DataTable]s.
   final DividerThemeData data;
 
   @override

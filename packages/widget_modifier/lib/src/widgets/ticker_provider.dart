@@ -1,13 +1,14 @@
-import 'package:widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
+
+import '../modifier.dart';
 
 class TickerModeModifier extends SingleChildStatelessModifier {
   const TickerModeModifier({
-    Key? key,
-    Widget? child,
+    super.key,
+    super.child,
     super.modifierKey,
     required this.enabled,
-  }) : super(key: key, child: child);
+  });
 
   final bool enabled;
 

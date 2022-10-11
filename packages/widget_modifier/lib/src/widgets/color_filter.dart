@@ -1,23 +1,46 @@
-import 'dart:ui' as ui;
-
-import 'package:widget_modifier/src/modifier.dart';
 import 'package:flutter/widgets.dart';
 
-class ColorFilteredModifier extends SingleChildStatelessModifier {
-  const ColorFilteredModifier({
-    Key? key,
-    Widget? child,
-    this.modfierKey,
-    required this.colorFilter,
-  }) : super(key: key, child: child);
+import '../modifier.dart';
 
-  final Key? modfierKey;
-  final ui.ColorFilter colorFilter;
+/// Applies a [ColorFilter] to its child.
+///
+/// This widget applies a function independently to each pixel of [child]'s
+/// content, according to the [ColorFilter] specified.
+/// Use the [ColorFilter.mode] constructor to apply a [Color] using a [BlendMode].
+/// Use the [BackdropFilter] widget instead, if the [ColorFilter]
+/// needs to be applied onto the content beneath [child].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=F7Cll22Dno8}
+///
+/// {@tool dartpad}
+/// These two images have two [ColorFilter]s applied with different [BlendMode]s,
+/// one with red color and [BlendMode.modulate] another with a grey color and [BlendMode.saturation].
+///
+/// ** See code in examples/api/lib/widgets/color_filter/color_filtered.0.dart **
+///{@end-tool}
+///
+/// See also:
+///
+///  * [BlendMode], describes how to blend a source image with the destination image.
+///  * [ColorFilter], which describes a function that modify a color to a different color.
+class ColorFilteredModifier extends SingleChildStatelessModifier {
+  /// Creates a widget that applies a [ColorFilter] to its child.
+  ///
+  /// The [colorFilter] must not be null.
+  const ColorFilteredModifier({
+    super.key,
+    super.child,
+    super.modifierKey,
+    required this.colorFilter,
+  });
+
+  /// The color filter to apply to the child of this widget.
+  final ColorFilter colorFilter;
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
     return ColorFiltered(
-      key: key,
+      key: modifierKey,
       colorFilter: colorFilter,
       child: child,
     );

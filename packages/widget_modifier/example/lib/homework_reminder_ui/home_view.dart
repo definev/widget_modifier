@@ -1,8 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_avataaar/flutter_avataaar.dart';
 import 'package:line_icons/line_icon.dart';
+import 'package:universal_io/io.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -236,7 +236,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: IntrinsicHeight(
-                          child: Column(
+                          child: Column( 
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(

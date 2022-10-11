@@ -1,10 +1,35 @@
-import 'package:widget_modifier/src/modifier.dart';
 import 'package:flutter/material.dart';
 
+import '../modifier.dart';
+
+/// Used with [ButtonThemeData] to configure the color and geometry of buttons.
+///
+/// This class is planned to be deprecated in a future release.
+/// Please use one or more of these buttons and associated themes instead:
+///
+///  * [TextButton], [TextButtonTheme], [TextButtonThemeData],
+///  * [ElevatedButton], [ElevatedButtonTheme], [ElevatedButtonThemeData],
+///  * [OutlinedButton], [OutlinedButtonTheme], [OutlinedButtonThemeData]
+///
+/// A button theme can be specified as part of the overall Material theme
+/// using [ThemeData.buttonTheme]. The Material theme's button theme data
+/// can be overridden with [ButtonTheme].
+///
+/// The actual appearance of buttons depends on the button theme, the
+/// button's enabled state, its elevation (if any), and the overall [Theme].
+///
+/// See also:
+///
+///  * [RawMaterialButton], which can be used to configure a button that doesn't
+///    depend on any inherited themes.
 class ButtonThemeModifier extends SingleChildStatelessModifier {
+  /// Creates a button theme.
+  ///
+  /// The [textTheme], [minWidth], [height], and [colorScheme] arguments
+  /// must not be null.
   ButtonThemeModifier({
-    Key? key,
-    Widget? child,
+    super.key,
+    super.child,
     super.modifierKey,
     ButtonTextTheme textTheme = ButtonTextTheme.normal,
     ButtonBarLayoutBehavior layoutBehavior = ButtonBarLayoutBehavior.padded,
@@ -37,16 +62,19 @@ class ButtonThemeModifier extends SingleChildStatelessModifier {
           splashColor: splashColor,
           colorScheme: colorScheme,
           materialTapTargetSize: materialTapTargetSize,
-        ),
-        super(key: key, child: child);
+        );
 
+  /// Creates a button theme from [data].
+  ///
+  /// The [data] argument must not be null.
   const ButtonThemeModifier.fromButtonThemeData({
-    Key? key,
-    Widget? child,
+    super.key,
+    super.child,
     super.modifierKey,
     required this.data,
-  }) : super(key: key, child: child);
+  });
 
+  /// Specifies the color and geometry of buttons.
   final ButtonThemeData data;
 
   @override

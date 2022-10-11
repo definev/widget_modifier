@@ -1,6 +1,27 @@
-import 'package:widget_modifier/src/modifier.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../modifier.dart';
+
+/// An iOS-style button.
+///
+/// Takes in a text or an icon that fades out and in on touch. May optionally have a
+/// background.
+///
+/// The [padding] defaults to 16.0 pixels. When using a [CupertinoButton] within
+/// a fixed height parent, like a [CupertinoNavigationBar], a smaller, or even
+/// [EdgeInsets.zero], should be used to prevent clipping larger [child]
+/// widgets.
+///
+/// {@tool dartpad}
+/// This sample shows produces an enabled and disabled [CupertinoButton] and
+/// [CupertinoButton.filled].
+///
+/// ** See code in examples/api/lib/cupertino/button/cupertino_button.0.dart **
+/// {@end-tool}
+///
+/// See also:
+///
+///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/buttons/>
 class CupertinoButtonModifier extends SingleChildStatelessModifier {
   /// Creates an iOS-style button.
   const CupertinoButtonModifier({
