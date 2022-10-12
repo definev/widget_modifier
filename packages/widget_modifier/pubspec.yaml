@@ -1,6 +1,6 @@
 name: widget_modifier
 description: A collection of built-in flutter widget modifiers, which flatten the widget tree and make it easier to read
-version: 0.0.2
+version: 0.1.0
 repository: https://github.com/definev/widget_modifier/tree/main/packages/widget_modifier
 issue_tracker: https://github.com/definev/widget_modifier/issues
 

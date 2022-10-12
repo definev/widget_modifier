@@ -27,8 +27,7 @@ abstract class ButtonStyleButtonModifier extends SingleChildStatelessModifier {
     required this.autofocus,
     required this.clipBehavior,
     this.statesController,
-  })  : assert(autofocus != null),
-        assert(clipBehavior != null);
+  });
 
   /// Called when the button is tapped or otherwise activated.
   ///
